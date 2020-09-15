@@ -4,6 +4,11 @@ The Clever API was generated from the Swagger files (https://github.com/Clever/s
 ## Re-Generating API
 
 ```sh
-npm install
+npm run regenerate
+```
+
+## Build
+
+```sh
 npm run build
 ```
