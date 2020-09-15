@@ -10,16 +10,20 @@
     "library"
   ],
   "dependencies": {
-    "axios": "^0.20.0"
+    "axios": "^0.19.0"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^1.0.18-4.3.1",
+    "@types/axios": "^0.14.0",
+    "@types/node": "^13.11.1",
     "gts": "^2.0.2",
-    "typescript": "^3.8.3",
-    "@types/node": "^13.11.1"
+    "typescript": "^3.8.3"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx openapi-generator generate -g typescript-axios -i https://raw.githubusercontent.com/Clever/swagger-api/master/full-v2.yml -o .",
+    "regenerate": "npx openapi-generator generate -g typescript-axios -i https://raw.githubusercontent.com/Clever/swagger-api/master/full-v2.yml -o .",
+    "build": "tsc",
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc",
