@@ -1,5 +1,6 @@
 "use strict";
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Data API
  * Serves the Clever Data API

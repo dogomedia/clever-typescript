@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Data API
  * Serves the Clever Data API
@@ -14,3 +15,4 @@
 
 export * from "./api";
 export * from "./configuration";
+

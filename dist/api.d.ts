@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { Configuration } from './configuration';
-import { AxiosPromise, AxiosInstance } from 'axios';
+import { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { RequestArgs, BaseAPI } from './base';
 /**
  *
@@ -23,13 +23,13 @@ export interface AdminName {
      * @type {string}
      * @memberof AdminName
      */
-    first?: string | null;
+    'first'?: string | null;
     /**
      *
      * @type {string}
      * @memberof AdminName
      */
-    last?: string | null;
+    'last'?: string | null;
 }
 /**
  *
@@ -42,7 +42,7 @@ export interface BadRequest {
      * @type {string}
      * @memberof BadRequest
      */
-    message?: string;
+    'message'?: string;
 }
 /**
  *
@@ -55,99 +55,90 @@ export interface Contact {
      * @type {string}
      * @memberof Contact
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof Contact
      */
-    district?: string;
+    'district'?: string;
     /**
      *
      * @type {string}
      * @memberof Contact
      */
-    email?: string | null;
+    'email'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Contact
      */
-    name?: string;
+    'name'?: string;
     /**
      *
      * @type {string}
      * @memberof Contact
      */
-    phone?: string | null;
+    'phone'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Contact
      */
-    phone_type?: ContactPhoneTypeEnum;
+    'phone_type'?: ContactPhoneTypeEnum;
     /**
      *
      * @type {string}
      * @memberof Contact
      */
-    relationship?: ContactRelationshipEnum;
+    'relationship'?: ContactRelationshipEnum;
     /**
      *
      * @type {string}
      * @memberof Contact
      */
-    sis_id?: string | null;
+    'sis_id'?: string | null;
     /**
      *
      * @type {Array<string>}
      * @memberof Contact
      */
-    students?: Array<string>;
+    'students'?: Array<string>;
     /**
      *
      * @type {string}
      * @memberof Contact
      */
-    type?: ContactTypeEnum;
+    'type'?: ContactTypeEnum;
 }
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum ContactPhoneTypeEnum {
-    Cell = "Cell",
-    Home = "Home",
-    Work = "Work",
-    Other = "Other",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum ContactRelationshipEnum {
-    Parent = "Parent",
-    Grandparent = "Grandparent",
-    Self = "Self",
-    AuntUncle = "Aunt/Uncle",
-    Sibling = "Sibling",
-    Other = "Other",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum ContactTypeEnum {
-    ParentGuardian = "Parent/Guardian",
-    Emergency = "Emergency",
-    Primary = "Primary",
-    Secondary = "Secondary",
-    Family = "Family",
-    Other = "Other",
-    Empty = ""
-}
+export declare const ContactPhoneTypeEnum: {
+    readonly Cell: "Cell";
+    readonly Home: "Home";
+    readonly Work: "Work";
+    readonly Other: "Other";
+    readonly Empty: "";
+};
+export declare type ContactPhoneTypeEnum = typeof ContactPhoneTypeEnum[keyof typeof ContactPhoneTypeEnum];
+export declare const ContactRelationshipEnum: {
+    readonly Parent: "Parent";
+    readonly Grandparent: "Grandparent";
+    readonly Self: "Self";
+    readonly AuntUncle: "Aunt/Uncle";
+    readonly Sibling: "Sibling";
+    readonly Other: "Other";
+    readonly Empty: "";
+};
+export declare type ContactRelationshipEnum = typeof ContactRelationshipEnum[keyof typeof ContactRelationshipEnum];
+export declare const ContactTypeEnum: {
+    readonly ParentGuardian: "Parent/Guardian";
+    readonly Emergency: "Emergency";
+    readonly Primary: "Primary";
+    readonly Secondary: "Secondary";
+    readonly Family: "Family";
+    readonly Other: "Other";
+    readonly Empty: "";
+};
+export declare type ContactTypeEnum = typeof ContactTypeEnum[keyof typeof ContactTypeEnum];
 /**
  *
  * @export
@@ -159,7 +150,7 @@ export interface ContactObject {
      * @type {Contact}
      * @memberof ContactObject
      */
-    object?: Contact;
+    'object'?: Contact;
 }
 /**
  *
@@ -172,7 +163,7 @@ export interface ContactResponse {
      * @type {Contact}
      * @memberof ContactResponse
      */
-    data?: Contact;
+    'data'?: Contact;
 }
 /**
  *
@@ -185,7 +176,7 @@ export interface ContactsCreated extends Event {
      * @type {ContactObject}
      * @memberof ContactsCreated
      */
-    data?: ContactObject;
+    'data'?: ContactObject;
 }
 /**
  *
@@ -198,7 +189,7 @@ export interface ContactsCreatedAllOf {
      * @type {ContactObject}
      * @memberof ContactsCreatedAllOf
      */
-    data?: ContactObject;
+    'data'?: ContactObject;
 }
 /**
  *
@@ -211,7 +202,7 @@ export interface ContactsDeleted extends Event {
      * @type {ContactObject}
      * @memberof ContactsDeleted
      */
-    data?: ContactObject;
+    'data'?: ContactObject;
 }
 /**
  *
@@ -224,13 +215,13 @@ export interface ContactsResponse {
      * @type {Array<ContactResponse>}
      * @memberof ContactsResponse
      */
-    data?: Array<ContactResponse>;
+    'data'?: Array<ContactResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof ContactsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -243,13 +234,13 @@ export interface ContactsUpdated extends Event {
      * @type {ContactObject}
      * @memberof ContactsUpdated
      */
-    data?: ContactObject;
+    'data'?: ContactObject;
     /**
      *
      * @type {object}
      * @memberof ContactsUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -262,13 +253,13 @@ export interface ContactsUpdatedAllOf {
      * @type {ContactObject}
      * @memberof ContactsUpdatedAllOf
      */
-    data?: ContactObject;
+    'data'?: ContactObject;
     /**
      *
      * @type {object}
      * @memberof ContactsUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -281,25 +272,25 @@ export interface Course {
      * @type {string}
      * @memberof Course
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof Course
      */
-    name?: string | null;
+    'name'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Course
      */
-    number?: string | null;
+    'number'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Course
      */
-    district?: string;
+    'district'?: string;
 }
 /**
  *
@@ -312,7 +303,7 @@ export interface CourseObject {
      * @type {Course}
      * @memberof CourseObject
      */
-    object?: Course;
+    'object'?: Course;
 }
 /**
  *
@@ -325,7 +316,7 @@ export interface CourseResponse {
      * @type {Course}
      * @memberof CourseResponse
      */
-    data?: Course;
+    'data'?: Course;
 }
 /**
  *
@@ -338,7 +329,7 @@ export interface CoursesCreated extends Event {
      * @type {CourseObject}
      * @memberof CoursesCreated
      */
-    data?: CourseObject;
+    'data'?: CourseObject;
 }
 /**
  *
@@ -351,7 +342,7 @@ export interface CoursesCreatedAllOf {
      * @type {CourseObject}
      * @memberof CoursesCreatedAllOf
      */
-    data?: CourseObject;
+    'data'?: CourseObject;
 }
 /**
  *
@@ -364,7 +355,7 @@ export interface CoursesDeleted extends Event {
      * @type {CourseObject}
      * @memberof CoursesDeleted
      */
-    data?: CourseObject;
+    'data'?: CourseObject;
 }
 /**
  *
@@ -377,13 +368,13 @@ export interface CoursesResponse {
      * @type {Array<CourseResponse>}
      * @memberof CoursesResponse
      */
-    data?: Array<CourseResponse>;
+    'data'?: Array<CourseResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof CoursesResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -396,13 +387,13 @@ export interface CoursesUpdated extends Event {
      * @type {CourseObject}
      * @memberof CoursesUpdated
      */
-    data?: CourseObject;
+    'data'?: CourseObject;
     /**
      *
      * @type {object}
      * @memberof CoursesUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -415,13 +406,13 @@ export interface CoursesUpdatedAllOf {
      * @type {CourseObject}
      * @memberof CoursesUpdatedAllOf
      */
-    data?: CourseObject;
+    'data'?: CourseObject;
     /**
      *
      * @type {object}
      * @memberof CoursesUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -434,7 +425,7 @@ export interface Credentials {
      * @type {string}
      * @memberof Credentials
      */
-    district_username?: string;
+    'district_username'?: string;
 }
 /**
  *
@@ -447,97 +438,95 @@ export interface District {
      * @type {string}
      * @memberof District
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    name?: string;
+    'name'?: string;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    mdr_number?: string | null;
+    'mdr_number'?: string | null;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    nces_id?: string | null;
+    'nces_id'?: string | null;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    sis_type?: string;
+    'sis_type'?: string;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    state?: DistrictStateEnum;
+    'state'?: DistrictStateEnum;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    last_sync?: string | null;
+    'last_sync'?: string | null;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    error?: string;
+    'error'?: string;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    pause_start?: string | null;
+    'pause_start'?: string | null;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    pause_end?: string | null;
+    'pause_end'?: string | null;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    launch_date?: string;
+    'launch_date'?: string;
     /**
      *
      * @type {string}
      * @memberof District
      */
-    portal_url?: string;
+    'portal_url'?: string;
     /**
      *
      * @type {Array<string>}
      * @memberof District
      */
-    login_methods?: Array<string>;
+    'login_methods'?: Array<string>;
     /**
      *
      * @type {DistrictAdmin}
      * @memberof District
      */
-    district_contact?: DistrictAdmin;
+    'district_contact'?: DistrictAdmin;
 }
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum DistrictStateEnum {
-    Running = "running",
-    Pending = "pending",
-    Error = "error",
-    Paused = "paused",
-    Empty = ""
-}
+export declare const DistrictStateEnum: {
+    readonly Running: "running";
+    readonly Pending: "pending";
+    readonly Error: "error";
+    readonly Paused: "paused";
+    readonly Empty: "";
+    readonly Success: "success";
+};
+export declare type DistrictStateEnum = typeof DistrictStateEnum[keyof typeof DistrictStateEnum];
 /**
  *
  * @export
@@ -549,31 +538,31 @@ export interface DistrictAdmin {
      * @type {string}
      * @memberof DistrictAdmin
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {AdminName}
      * @memberof DistrictAdmin
      */
-    name?: AdminName;
+    'name'?: AdminName;
     /**
      *
      * @type {string}
      * @memberof DistrictAdmin
      */
-    email?: string;
+    'email'?: string;
     /**
      *
      * @type {string}
      * @memberof DistrictAdmin
      */
-    title?: string | null;
+    'title'?: string | null;
     /**
      *
      * @type {string}
      * @memberof DistrictAdmin
      */
-    district?: string;
+    'district'?: string;
 }
 /**
  *
@@ -586,7 +575,7 @@ export interface DistrictAdminObject {
      * @type {DistrictAdmin}
      * @memberof DistrictAdminObject
      */
-    object?: DistrictAdmin;
+    'object'?: DistrictAdmin;
 }
 /**
  *
@@ -599,7 +588,7 @@ export interface DistrictAdminResponse {
      * @type {DistrictAdmin}
      * @memberof DistrictAdminResponse
      */
-    data?: DistrictAdmin;
+    'data'?: DistrictAdmin;
 }
 /**
  *
@@ -612,13 +601,13 @@ export interface DistrictAdminsResponse {
      * @type {Array<DistrictAdminResponse>}
      * @memberof DistrictAdminsResponse
      */
-    data?: Array<DistrictAdminResponse>;
+    'data'?: Array<DistrictAdminResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof DistrictAdminsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -631,7 +620,7 @@ export interface DistrictObject {
      * @type {District}
      * @memberof DistrictObject
      */
-    object?: District;
+    'object'?: District;
 }
 /**
  *
@@ -644,7 +633,7 @@ export interface DistrictResponse {
      * @type {District}
      * @memberof DistrictResponse
      */
-    data?: District;
+    'data'?: District;
 }
 /**
  *
@@ -657,7 +646,7 @@ export interface DistrictadminsCreated extends Event {
      * @type {DistrictAdminObject}
      * @memberof DistrictadminsCreated
      */
-    data?: DistrictAdminObject;
+    'data'?: DistrictAdminObject;
 }
 /**
  *
@@ -670,7 +659,7 @@ export interface DistrictadminsCreatedAllOf {
      * @type {DistrictAdminObject}
      * @memberof DistrictadminsCreatedAllOf
      */
-    data?: DistrictAdminObject;
+    'data'?: DistrictAdminObject;
 }
 /**
  *
@@ -683,7 +672,7 @@ export interface DistrictadminsDeleted extends Event {
      * @type {DistrictAdminObject}
      * @memberof DistrictadminsDeleted
      */
-    data?: DistrictAdminObject;
+    'data'?: DistrictAdminObject;
 }
 /**
  *
@@ -696,13 +685,13 @@ export interface DistrictadminsUpdated extends Event {
      * @type {DistrictAdminObject}
      * @memberof DistrictadminsUpdated
      */
-    data?: DistrictAdminObject;
+    'data'?: DistrictAdminObject;
     /**
      *
      * @type {object}
      * @memberof DistrictadminsUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -715,13 +704,13 @@ export interface DistrictadminsUpdatedAllOf {
      * @type {DistrictAdminObject}
      * @memberof DistrictadminsUpdatedAllOf
      */
-    data?: DistrictAdminObject;
+    'data'?: DistrictAdminObject;
     /**
      *
      * @type {object}
      * @memberof DistrictadminsUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -734,7 +723,7 @@ export interface DistrictsCreated extends Event {
      * @type {DistrictObject}
      * @memberof DistrictsCreated
      */
-    data?: DistrictObject;
+    'data'?: DistrictObject;
 }
 /**
  *
@@ -747,7 +736,7 @@ export interface DistrictsCreatedAllOf {
      * @type {DistrictObject}
      * @memberof DistrictsCreatedAllOf
      */
-    data?: DistrictObject;
+    'data'?: DistrictObject;
 }
 /**
  *
@@ -760,7 +749,7 @@ export interface DistrictsDeleted extends Event {
      * @type {DistrictObject}
      * @memberof DistrictsDeleted
      */
-    data?: DistrictObject;
+    'data'?: DistrictObject;
 }
 /**
  *
@@ -773,13 +762,13 @@ export interface DistrictsResponse {
      * @type {Array<DistrictResponse>}
      * @memberof DistrictsResponse
      */
-    data?: Array<DistrictResponse>;
+    'data'?: Array<DistrictResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof DistrictsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -792,13 +781,13 @@ export interface DistrictsUpdated extends Event {
      * @type {DistrictObject}
      * @memberof DistrictsUpdated
      */
-    data?: DistrictObject;
+    'data'?: DistrictObject;
     /**
      *
      * @type {object}
      * @memberof DistrictsUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -811,13 +800,13 @@ export interface DistrictsUpdatedAllOf {
      * @type {DistrictObject}
      * @memberof DistrictsUpdatedAllOf
      */
-    data?: DistrictObject;
+    'data'?: DistrictObject;
     /**
      *
      * @type {object}
      * @memberof DistrictsUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -830,19 +819,19 @@ export interface Event {
      * @type {string}
      * @memberof Event
      */
-    type: string;
+    'type': string;
     /**
      *
      * @type {string}
      * @memberof Event
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof Event
      */
-    created?: string;
+    'created'?: string;
 }
 /**
  *
@@ -855,7 +844,7 @@ export interface EventResponse {
      * @type {Event}
      * @memberof EventResponse
      */
-    data?: Event;
+    'data'?: Event;
 }
 /**
  *
@@ -868,13 +857,13 @@ export interface EventsResponse {
      * @type {Array<EventResponse>}
      * @memberof EventsResponse
      */
-    data?: Array<EventResponse>;
+    'data'?: Array<EventResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof EventsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -887,7 +876,7 @@ export interface InternalError {
      * @type {string}
      * @memberof InternalError
      */
-    message?: string;
+    'message'?: string;
 }
 /**
  *
@@ -900,23 +889,20 @@ export interface Link {
      * @type {string}
      * @memberof Link
      */
-    rel?: LinkRelEnum;
+    'rel'?: LinkRelEnum;
     /**
      *
      * @type {string}
      * @memberof Link
      */
-    uri?: string;
+    'uri'?: string;
 }
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum LinkRelEnum {
-    Next = "next",
-    Prev = "prev",
-    Self = "self"
-}
+export declare const LinkRelEnum: {
+    readonly Next: "next";
+    readonly Prev: "prev";
+    readonly Self: "self";
+};
+export declare type LinkRelEnum = typeof LinkRelEnum[keyof typeof LinkRelEnum];
 /**
  *
  * @export
@@ -928,37 +914,37 @@ export interface Location {
      * @type {string}
      * @memberof Location
      */
-    address?: string | null;
+    'address'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Location
      */
-    city?: string | null;
+    'city'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Location
      */
-    state?: string | null;
+    'state'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Location
      */
-    zip?: string | null;
+    'zip'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Location
      */
-    lat?: string | null;
+    'lat'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Location
      */
-    lon?: string | null;
+    'lon'?: string | null;
 }
 /**
  *
@@ -971,19 +957,19 @@ export interface Name {
      * @type {string}
      * @memberof Name
      */
-    first?: string | null;
+    'first'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Name
      */
-    middle?: string | null;
+    'middle'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Name
      */
-    last?: string | null;
+    'last'?: string | null;
 }
 /**
  *
@@ -996,7 +982,7 @@ export interface NotFound {
      * @type {string}
      * @memberof NotFound
      */
-    message?: string;
+    'message'?: string;
 }
 /**
  *
@@ -1009,13 +995,13 @@ export interface Principal {
      * @type {string}
      * @memberof Principal
      */
-    name?: string | null;
+    'name'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Principal
      */
-    email?: string | null;
+    'email'?: string | null;
 }
 /**
  *
@@ -1028,154 +1014,148 @@ export interface School {
      * @type {string}
      * @memberof School
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    created?: string;
+    'created'?: string;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    district?: string;
+    'district'?: string;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    high_grade?: SchoolHighGradeEnum;
+    'high_grade'?: SchoolHighGradeEnum;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    last_modified?: string;
+    'last_modified'?: string;
     /**
      *
      * @type {Location}
      * @memberof School
      */
-    location?: Location;
+    'location'?: Location;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    low_grade?: SchoolLowGradeEnum;
+    'low_grade'?: SchoolLowGradeEnum;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    name?: string;
+    'name'?: string;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    nces_id?: string | null;
+    'nces_id'?: string | null;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    phone?: string | null;
+    'phone'?: string | null;
     /**
      *
      * @type {Principal}
      * @memberof School
      */
-    principal?: Principal;
+    'principal'?: Principal;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    school_number?: string;
+    'school_number'?: string;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    sis_id?: string;
+    'sis_id'?: string;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    state_id?: string | null;
+    'state_id'?: string | null;
     /**
      *
      * @type {string}
      * @memberof School
      */
-    mdr_number?: string | null;
+    'mdr_number'?: string | null;
     /**
      *
      * @type {object}
      * @memberof School
      */
-    ext?: object;
+    'ext'?: object;
 }
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum SchoolHighGradeEnum {
-    InfantToddler = "InfantToddler",
-    Preschool = "Preschool",
-    PreKindergarten = "PreKindergarten",
-    TransitionalKindergarten = "TransitionalKindergarten",
-    Kindergarten = "Kindergarten",
-    _1 = "1",
-    _2 = "2",
-    _3 = "3",
-    _4 = "4",
-    _5 = "5",
-    _6 = "6",
-    _7 = "7",
-    _8 = "8",
-    _9 = "9",
-    _10 = "10",
-    _11 = "11",
-    _12 = "12",
-    _13 = "13",
-    PostGraduate = "PostGraduate",
-    Ungraded = "Ungraded",
-    Other = "Other",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum SchoolLowGradeEnum {
-    InfantToddler = "InfantToddler",
-    Preschool = "Preschool",
-    PreKindergarten = "PreKindergarten",
-    TransitionalKindergarten = "TransitionalKindergarten",
-    Kindergarten = "Kindergarten",
-    _1 = "1",
-    _2 = "2",
-    _3 = "3",
-    _4 = "4",
-    _5 = "5",
-    _6 = "6",
-    _7 = "7",
-    _8 = "8",
-    _9 = "9",
-    _10 = "10",
-    _11 = "11",
-    _12 = "12",
-    _13 = "13",
-    PostGraduate = "PostGraduate",
-    Ungraded = "Ungraded",
-    Other = "Other",
-    Empty = ""
-}
+export declare const SchoolHighGradeEnum: {
+    readonly InfantToddler: "InfantToddler";
+    readonly Preschool: "Preschool";
+    readonly PreKindergarten: "PreKindergarten";
+    readonly TransitionalKindergarten: "TransitionalKindergarten";
+    readonly Kindergarten: "Kindergarten";
+    readonly _1: "1";
+    readonly _2: "2";
+    readonly _3: "3";
+    readonly _4: "4";
+    readonly _5: "5";
+    readonly _6: "6";
+    readonly _7: "7";
+    readonly _8: "8";
+    readonly _9: "9";
+    readonly _10: "10";
+    readonly _11: "11";
+    readonly _12: "12";
+    readonly _13: "13";
+    readonly PostGraduate: "PostGraduate";
+    readonly Ungraded: "Ungraded";
+    readonly Other: "Other";
+    readonly Empty: "";
+};
+export declare type SchoolHighGradeEnum = typeof SchoolHighGradeEnum[keyof typeof SchoolHighGradeEnum];
+export declare const SchoolLowGradeEnum: {
+    readonly InfantToddler: "InfantToddler";
+    readonly Preschool: "Preschool";
+    readonly PreKindergarten: "PreKindergarten";
+    readonly TransitionalKindergarten: "TransitionalKindergarten";
+    readonly Kindergarten: "Kindergarten";
+    readonly _1: "1";
+    readonly _2: "2";
+    readonly _3: "3";
+    readonly _4: "4";
+    readonly _5: "5";
+    readonly _6: "6";
+    readonly _7: "7";
+    readonly _8: "8";
+    readonly _9: "9";
+    readonly _10: "10";
+    readonly _11: "11";
+    readonly _12: "12";
+    readonly _13: "13";
+    readonly PostGraduate: "PostGraduate";
+    readonly Ungraded: "Ungraded";
+    readonly Other: "Other";
+    readonly Empty: "";
+};
+export declare type SchoolLowGradeEnum = typeof SchoolLowGradeEnum[keyof typeof SchoolLowGradeEnum];
 /**
  *
  * @export
@@ -1187,61 +1167,61 @@ export interface SchoolAdmin {
      * @type {string}
      * @memberof SchoolAdmin
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {Credentials}
      * @memberof SchoolAdmin
      */
-    credentials?: Credentials;
+    'credentials'?: Credentials;
     /**
      *
      * @type {string}
      * @memberof SchoolAdmin
      */
-    district?: string;
+    'district'?: string;
     /**
      *
      * @type {string}
      * @memberof SchoolAdmin
      */
-    email?: string;
+    'email'?: string;
     /**
      *
      * @type {AdminName}
      * @memberof SchoolAdmin
      */
-    name?: AdminName;
+    'name'?: AdminName;
     /**
      *
      * @type {Array<string>}
      * @memberof SchoolAdmin
      */
-    schools?: Array<string>;
+    'schools'?: Array<string>;
     /**
      *
      * @type {string}
      * @memberof SchoolAdmin
      */
-    staff_id?: string;
+    'staff_id'?: string;
     /**
      *
      * @type {string}
      * @memberof SchoolAdmin
      */
-    title?: string | null;
+    'title'?: string | null;
     /**
      *
      * @type {string}
      * @memberof SchoolAdmin
      */
-    department?: string | null;
+    'department'?: string | null;
     /**
      *
      * @type {object}
      * @memberof SchoolAdmin
      */
-    ext?: object;
+    'ext'?: object;
 }
 /**
  *
@@ -1254,7 +1234,7 @@ export interface SchoolAdminObject {
      * @type {SchoolAdmin}
      * @memberof SchoolAdminObject
      */
-    object?: SchoolAdmin;
+    'object'?: SchoolAdmin;
 }
 /**
  *
@@ -1267,7 +1247,7 @@ export interface SchoolAdminResponse {
      * @type {SchoolAdmin}
      * @memberof SchoolAdminResponse
      */
-    data?: SchoolAdmin;
+    'data'?: SchoolAdmin;
 }
 /**
  *
@@ -1280,13 +1260,13 @@ export interface SchoolAdminsResponse {
      * @type {Array<SchoolAdminResponse>}
      * @memberof SchoolAdminsResponse
      */
-    data?: Array<SchoolAdminResponse>;
+    'data'?: Array<SchoolAdminResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof SchoolAdminsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -1299,19 +1279,19 @@ export interface SchoolEnrollment {
      * @type {string}
      * @memberof SchoolEnrollment
      */
-    school?: string;
+    'school'?: string;
     /**
      *
      * @type {string}
      * @memberof SchoolEnrollment
      */
-    start_date?: string;
+    'start_date'?: string;
     /**
      *
      * @type {string}
      * @memberof SchoolEnrollment
      */
-    end_date?: string;
+    'end_date'?: string;
 }
 /**
  *
@@ -1324,7 +1304,7 @@ export interface SchoolObject {
      * @type {School}
      * @memberof SchoolObject
      */
-    object?: School;
+    'object'?: School;
 }
 /**
  *
@@ -1337,7 +1317,7 @@ export interface SchoolResponse {
      * @type {School}
      * @memberof SchoolResponse
      */
-    data?: School;
+    'data'?: School;
 }
 /**
  *
@@ -1350,7 +1330,7 @@ export interface SchooladminsCreated extends Event {
      * @type {SchoolAdminObject}
      * @memberof SchooladminsCreated
      */
-    data?: SchoolAdminObject;
+    'data'?: SchoolAdminObject;
 }
 /**
  *
@@ -1363,7 +1343,7 @@ export interface SchooladminsCreatedAllOf {
      * @type {SchoolAdminObject}
      * @memberof SchooladminsCreatedAllOf
      */
-    data?: SchoolAdminObject;
+    'data'?: SchoolAdminObject;
 }
 /**
  *
@@ -1376,7 +1356,7 @@ export interface SchooladminsDeleted extends Event {
      * @type {SchoolAdminObject}
      * @memberof SchooladminsDeleted
      */
-    data?: SchoolAdminObject;
+    'data'?: SchoolAdminObject;
 }
 /**
  *
@@ -1389,13 +1369,13 @@ export interface SchooladminsUpdated extends Event {
      * @type {SchoolAdminObject}
      * @memberof SchooladminsUpdated
      */
-    data?: SchoolAdminObject;
+    'data'?: SchoolAdminObject;
     /**
      *
      * @type {object}
      * @memberof SchooladminsUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -1408,13 +1388,13 @@ export interface SchooladminsUpdatedAllOf {
      * @type {SchoolAdminObject}
      * @memberof SchooladminsUpdatedAllOf
      */
-    data?: SchoolAdminObject;
+    'data'?: SchoolAdminObject;
     /**
      *
      * @type {object}
      * @memberof SchooladminsUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -1427,7 +1407,7 @@ export interface SchoolsCreated extends Event {
      * @type {SchoolObject}
      * @memberof SchoolsCreated
      */
-    data?: SchoolObject;
+    'data'?: SchoolObject;
 }
 /**
  *
@@ -1440,7 +1420,7 @@ export interface SchoolsCreatedAllOf {
      * @type {SchoolObject}
      * @memberof SchoolsCreatedAllOf
      */
-    data?: SchoolObject;
+    'data'?: SchoolObject;
 }
 /**
  *
@@ -1453,7 +1433,7 @@ export interface SchoolsDeleted extends Event {
      * @type {SchoolObject}
      * @memberof SchoolsDeleted
      */
-    data?: SchoolObject;
+    'data'?: SchoolObject;
 }
 /**
  *
@@ -1466,13 +1446,13 @@ export interface SchoolsResponse {
      * @type {Array<SchoolResponse>}
      * @memberof SchoolsResponse
      */
-    data?: Array<SchoolResponse>;
+    'data'?: Array<SchoolResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof SchoolsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -1485,13 +1465,13 @@ export interface SchoolsUpdated extends Event {
      * @type {SchoolObject}
      * @memberof SchoolsUpdated
      */
-    data?: SchoolObject;
+    'data'?: SchoolObject;
     /**
      *
      * @type {object}
      * @memberof SchoolsUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -1504,13 +1484,13 @@ export interface SchoolsUpdatedAllOf {
      * @type {SchoolObject}
      * @memberof SchoolsUpdatedAllOf
      */
-    data?: SchoolObject;
+    'data'?: SchoolObject;
     /**
      *
      * @type {object}
      * @memberof SchoolsUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -1523,150 +1503,144 @@ export interface Section {
      * @type {string}
      * @memberof Section
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    course?: string | null;
+    'course'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    created?: string;
+    'created'?: string;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    district?: string;
+    'district'?: string;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    grade?: SectionGradeEnum;
+    'grade'?: SectionGradeEnum;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    last_modified?: string;
+    'last_modified'?: string;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    name?: string;
+    'name'?: string;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    period?: string | null;
+    'period'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    school?: string;
+    'school'?: string;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    section_number?: string | null;
+    'section_number'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    sis_id?: string;
+    'sis_id'?: string;
     /**
      *
      * @type {Array<string>}
      * @memberof Section
      */
-    students?: Array<string>;
+    'students'?: Array<string>;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    subject?: SectionSubjectEnum;
+    'subject'?: SectionSubjectEnum;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    teacher?: string | null;
+    'teacher'?: string | null;
     /**
      *
      * @type {Array<string>}
      * @memberof Section
      */
-    teachers?: Array<string>;
+    'teachers'?: Array<string>;
     /**
      *
      * @type {string}
      * @memberof Section
      */
-    term_id?: string | null;
+    'term_id'?: string | null;
     /**
      *
      * @type {object}
      * @memberof Section
      */
-    ext?: object;
+    'ext'?: object;
 }
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum SectionGradeEnum {
-    InfantToddler = "InfantToddler",
-    Preschool = "Preschool",
-    PreKindergarten = "PreKindergarten",
-    TransitionalKindergarten = "TransitionalKindergarten",
-    Kindergarten = "Kindergarten",
-    _1 = "1",
-    _2 = "2",
-    _3 = "3",
-    _4 = "4",
-    _5 = "5",
-    _6 = "6",
-    _7 = "7",
-    _8 = "8",
-    _9 = "9",
-    _10 = "10",
-    _11 = "11",
-    _12 = "12",
-    _13 = "13",
-    PostGraduate = "PostGraduate",
-    Ungraded = "Ungraded",
-    Other = "Other",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum SectionSubjectEnum {
-    EnglishLanguageArts = "english/language arts",
-    Math = "math",
-    Science = "science",
-    SocialStudies = "social studies",
-    Language = "language",
-    HomeroomAdvisory = "homeroom/advisory",
-    InterventionsOnlineLearning = "interventions/online learning",
-    TechnologyAndEngineering = "technology and engineering",
-    PEAndHealth = "PE and health",
-    ArtsAndMusic = "arts and music",
-    Other = "other",
-    Empty = ""
-}
+export declare const SectionGradeEnum: {
+    readonly InfantToddler: "InfantToddler";
+    readonly Preschool: "Preschool";
+    readonly PreKindergarten: "PreKindergarten";
+    readonly TransitionalKindergarten: "TransitionalKindergarten";
+    readonly Kindergarten: "Kindergarten";
+    readonly _1: "1";
+    readonly _2: "2";
+    readonly _3: "3";
+    readonly _4: "4";
+    readonly _5: "5";
+    readonly _6: "6";
+    readonly _7: "7";
+    readonly _8: "8";
+    readonly _9: "9";
+    readonly _10: "10";
+    readonly _11: "11";
+    readonly _12: "12";
+    readonly _13: "13";
+    readonly PostGraduate: "PostGraduate";
+    readonly Ungraded: "Ungraded";
+    readonly Other: "Other";
+    readonly Empty: "";
+};
+export declare type SectionGradeEnum = typeof SectionGradeEnum[keyof typeof SectionGradeEnum];
+export declare const SectionSubjectEnum: {
+    readonly EnglishLanguageArts: "english/language arts";
+    readonly Math: "math";
+    readonly Science: "science";
+    readonly SocialStudies: "social studies";
+    readonly Language: "language";
+    readonly HomeroomAdvisory: "homeroom/advisory";
+    readonly InterventionsOnlineLearning: "interventions/online learning";
+    readonly TechnologyAndEngineering: "technology and engineering";
+    readonly PeAndHealth: "PE and health";
+    readonly ArtsAndMusic: "arts and music";
+    readonly Other: "other";
+    readonly Empty: "";
+};
+export declare type SectionSubjectEnum = typeof SectionSubjectEnum[keyof typeof SectionSubjectEnum];
 /**
  *
  * @export
@@ -1678,7 +1652,7 @@ export interface SectionObject {
      * @type {Section}
      * @memberof SectionObject
      */
-    object?: Section;
+    'object'?: Section;
 }
 /**
  *
@@ -1691,7 +1665,7 @@ export interface SectionResponse {
      * @type {Section}
      * @memberof SectionResponse
      */
-    data?: Section;
+    'data'?: Section;
 }
 /**
  *
@@ -1704,7 +1678,7 @@ export interface SectionsCreated extends Event {
      * @type {SectionObject}
      * @memberof SectionsCreated
      */
-    data?: SectionObject;
+    'data'?: SectionObject;
 }
 /**
  *
@@ -1717,7 +1691,7 @@ export interface SectionsCreatedAllOf {
      * @type {SectionObject}
      * @memberof SectionsCreatedAllOf
      */
-    data?: SectionObject;
+    'data'?: SectionObject;
 }
 /**
  *
@@ -1730,7 +1704,7 @@ export interface SectionsDeleted extends Event {
      * @type {SectionObject}
      * @memberof SectionsDeleted
      */
-    data?: SectionObject;
+    'data'?: SectionObject;
 }
 /**
  *
@@ -1743,13 +1717,13 @@ export interface SectionsResponse {
      * @type {Array<SectionResponse>}
      * @memberof SectionsResponse
      */
-    data?: Array<SectionResponse>;
+    'data'?: Array<SectionResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof SectionsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -1762,13 +1736,13 @@ export interface SectionsUpdated extends Event {
      * @type {SectionObject}
      * @memberof SectionsUpdated
      */
-    data?: SectionObject;
+    'data'?: SectionObject;
     /**
      *
      * @type {object}
      * @memberof SectionsUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -1781,13 +1755,13 @@ export interface SectionsUpdatedAllOf {
      * @type {SectionObject}
      * @memberof SectionsUpdatedAllOf
      */
-    data?: SectionObject;
+    'data'?: SectionObject;
     /**
      *
      * @type {object}
      * @memberof SectionsUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -1800,282 +1774,264 @@ export interface Student {
      * @type {string}
      * @memberof Student
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    created?: string;
+    'created'?: string;
     /**
      *
      * @type {Credentials}
      * @memberof Student
      */
-    credentials?: Credentials;
+    'credentials'?: Credentials;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    district?: string;
+    'district'?: string;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    dob?: string | null;
+    'dob'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    ell_status?: StudentEllStatusEnum;
+    'ell_status'?: StudentEllStatusEnum;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    email?: string | null;
+    'email'?: string | null;
     /**
      *
      * @type {Array<SchoolEnrollment>}
      * @memberof Student
      */
-    enrollments?: Array<SchoolEnrollment>;
+    'enrollments'?: Array<SchoolEnrollment>;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    gender?: StudentGenderEnum;
+    'gender'?: StudentGenderEnum;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    graduation_year?: string | null;
+    'graduation_year'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    grade?: StudentGradeEnum;
+    'grade'?: StudentGradeEnum;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    hispanic_ethnicity?: StudentHispanicEthnicityEnum;
+    'hispanic_ethnicity'?: StudentHispanicEthnicityEnum;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    home_language?: StudentHomeLanguageEnum;
+    'home_language'?: StudentHomeLanguageEnum;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    iep_status?: string | null;
+    'iep_status'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    last_modified?: string;
+    'last_modified'?: string;
     /**
      *
      * @type {Location}
      * @memberof Student
      */
-    location?: Location;
+    'location'?: Location;
     /**
      *
      * @type {Name}
      * @memberof Student
      */
-    name?: Name;
+    'name'?: Name;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    race?: StudentRaceEnum;
+    'race'?: StudentRaceEnum;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    school?: string;
+    'school'?: string;
     /**
      *
      * @type {Array<string>}
      * @memberof Student
      */
-    schools?: Array<string>;
+    'schools'?: Array<string>;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    sis_id?: string;
+    'sis_id'?: string;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    state_id?: string | null;
+    'state_id'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    student_number?: string | null;
+    'student_number'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    unweighted_gpa?: string | null;
+    'unweighted_gpa'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Student
      */
-    weighted_gpa?: string | null;
+    'weighted_gpa'?: string | null;
     /**
      *
      * @type {object}
      * @memberof Student
      */
-    ext?: object;
+    'ext'?: object;
 }
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum StudentEllStatusEnum {
-    Y = "Y",
-    N = "N",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum StudentGenderEnum {
-    M = "M",
-    F = "F",
-    X = "X",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum StudentGradeEnum {
-    InfantToddler = "InfantToddler",
-    Preschool = "Preschool",
-    PreKindergarten = "PreKindergarten",
-    TransitionalKindergarten = "TransitionalKindergarten",
-    Kindergarten = "Kindergarten",
-    _1 = "1",
-    _2 = "2",
-    _3 = "3",
-    _4 = "4",
-    _5 = "5",
-    _6 = "6",
-    _7 = "7",
-    _8 = "8",
-    _9 = "9",
-    _10 = "10",
-    _11 = "11",
-    _12 = "12",
-    _13 = "13",
-    PostGraduate = "PostGraduate",
-    Ungraded = "Ungraded",
-    Other = "Other",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum StudentHispanicEthnicityEnum {
-    Y = "Y",
-    N = "N",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum StudentHomeLanguageEnum {
-    English = "English",
-    Albanian = "Albanian",
-    Amharic = "Amharic",
-    Arabic = "Arabic",
-    Bengali = "Bengali",
-    Bosnian = "Bosnian",
-    Burmese = "Burmese",
-    Cantonese = "Cantonese",
-    Chinese = "Chinese",
-    Dutch = "Dutch",
-    Farsi = "Farsi",
-    French = "French",
-    German = "German",
-    Hebrew = "Hebrew",
-    Hindi = "Hindi",
-    Hmong = "Hmong",
-    Ilocano = "Ilocano",
-    Japanese = "Japanese",
-    Javanese = "Javanese",
-    Karen = "Karen",
-    Khmer = "Khmer",
-    Korean = "Korean",
-    Laotian = "Laotian",
-    Latvian = "Latvian",
-    Malay = "Malay",
-    Mandarin = "Mandarin",
-    Nepali = "Nepali",
-    Oromo = "Oromo",
-    Polish = "Polish",
-    Portuguese = "Portuguese",
-    Punjabi = "Punjabi",
-    Romanian = "Romanian",
-    Russian = "Russian",
-    Samoan = "Samoan",
-    Serbian = "Serbian",
-    Somali = "Somali",
-    Spanish = "Spanish",
-    Swahili = "Swahili",
-    Tagalog = "Tagalog",
-    Tamil = "Tamil",
-    Telugu = "Telugu",
-    Thai = "Thai",
-    Tigrinya = "Tigrinya",
-    Turkish = "Turkish",
-    Ukrainian = "Ukrainian",
-    Urdu = "Urdu",
-    Vietnamese = "Vietnamese",
-    Empty = ""
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export declare enum StudentRaceEnum {
-    Caucasian = "Caucasian",
-    Asian = "Asian",
-    BlackOrAfricanAmerican = "Black or African American",
-    AmericanIndian = "American Indian",
-    HawaiianOrOtherPacificIslander = "Hawaiian or Other Pacific Islander",
-    TwoOrMoreRaces = "Two or More Races",
-    Unknown = "Unknown",
-    Empty = ""
-}
+export declare const StudentEllStatusEnum: {
+    readonly Y: "Y";
+    readonly N: "N";
+    readonly Empty: "";
+};
+export declare type StudentEllStatusEnum = typeof StudentEllStatusEnum[keyof typeof StudentEllStatusEnum];
+export declare const StudentGenderEnum: {
+    readonly M: "M";
+    readonly F: "F";
+    readonly X: "X";
+    readonly Empty: "";
+};
+export declare type StudentGenderEnum = typeof StudentGenderEnum[keyof typeof StudentGenderEnum];
+export declare const StudentGradeEnum: {
+    readonly InfantToddler: "InfantToddler";
+    readonly Preschool: "Preschool";
+    readonly PreKindergarten: "PreKindergarten";
+    readonly TransitionalKindergarten: "TransitionalKindergarten";
+    readonly Kindergarten: "Kindergarten";
+    readonly _1: "1";
+    readonly _2: "2";
+    readonly _3: "3";
+    readonly _4: "4";
+    readonly _5: "5";
+    readonly _6: "6";
+    readonly _7: "7";
+    readonly _8: "8";
+    readonly _9: "9";
+    readonly _10: "10";
+    readonly _11: "11";
+    readonly _12: "12";
+    readonly _13: "13";
+    readonly PostGraduate: "PostGraduate";
+    readonly Ungraded: "Ungraded";
+    readonly Other: "Other";
+    readonly Empty: "";
+};
+export declare type StudentGradeEnum = typeof StudentGradeEnum[keyof typeof StudentGradeEnum];
+export declare const StudentHispanicEthnicityEnum: {
+    readonly Y: "Y";
+    readonly N: "N";
+    readonly Empty: "";
+};
+export declare type StudentHispanicEthnicityEnum = typeof StudentHispanicEthnicityEnum[keyof typeof StudentHispanicEthnicityEnum];
+export declare const StudentHomeLanguageEnum: {
+    readonly English: "English";
+    readonly Albanian: "Albanian";
+    readonly Amharic: "Amharic";
+    readonly Arabic: "Arabic";
+    readonly Bengali: "Bengali";
+    readonly Bosnian: "Bosnian";
+    readonly Burmese: "Burmese";
+    readonly Cantonese: "Cantonese";
+    readonly Chinese: "Chinese";
+    readonly Dutch: "Dutch";
+    readonly Farsi: "Farsi";
+    readonly French: "French";
+    readonly German: "German";
+    readonly Hebrew: "Hebrew";
+    readonly Hindi: "Hindi";
+    readonly Hmong: "Hmong";
+    readonly Ilocano: "Ilocano";
+    readonly Japanese: "Japanese";
+    readonly Javanese: "Javanese";
+    readonly Karen: "Karen";
+    readonly Khmer: "Khmer";
+    readonly Korean: "Korean";
+    readonly Laotian: "Laotian";
+    readonly Latvian: "Latvian";
+    readonly Malay: "Malay";
+    readonly Mandarin: "Mandarin";
+    readonly Nepali: "Nepali";
+    readonly Oromo: "Oromo";
+    readonly Polish: "Polish";
+    readonly Portuguese: "Portuguese";
+    readonly Punjabi: "Punjabi";
+    readonly Romanian: "Romanian";
+    readonly Russian: "Russian";
+    readonly Samoan: "Samoan";
+    readonly Serbian: "Serbian";
+    readonly Somali: "Somali";
+    readonly Spanish: "Spanish";
+    readonly Swahili: "Swahili";
+    readonly Tagalog: "Tagalog";
+    readonly Tamil: "Tamil";
+    readonly Telugu: "Telugu";
+    readonly Thai: "Thai";
+    readonly Tigrinya: "Tigrinya";
+    readonly Turkish: "Turkish";
+    readonly Ukrainian: "Ukrainian";
+    readonly Urdu: "Urdu";
+    readonly Vietnamese: "Vietnamese";
+    readonly Empty: "";
+};
+export declare type StudentHomeLanguageEnum = typeof StudentHomeLanguageEnum[keyof typeof StudentHomeLanguageEnum];
+export declare const StudentRaceEnum: {
+    readonly Caucasian: "Caucasian";
+    readonly Asian: "Asian";
+    readonly BlackOrAfricanAmerican: "Black or African American";
+    readonly AmericanIndian: "American Indian";
+    readonly HawaiianOrOtherPacificIslander: "Hawaiian or Other Pacific Islander";
+    readonly TwoOrMoreRaces: "Two or More Races";
+    readonly Unknown: "Unknown";
+    readonly Empty: "";
+};
+export declare type StudentRaceEnum = typeof StudentRaceEnum[keyof typeof StudentRaceEnum];
 /**
  *
  * @export
@@ -2087,7 +2043,7 @@ export interface StudentObject {
      * @type {Student}
      * @memberof StudentObject
      */
-    object?: Student;
+    'object'?: Student;
 }
 /**
  *
@@ -2100,7 +2056,7 @@ export interface StudentResponse {
      * @type {Student}
      * @memberof StudentResponse
      */
-    data?: Student;
+    'data'?: Student;
 }
 /**
  *
@@ -2113,7 +2069,7 @@ export interface StudentsCreated extends Event {
      * @type {StudentObject}
      * @memberof StudentsCreated
      */
-    data?: StudentObject;
+    'data'?: StudentObject;
 }
 /**
  *
@@ -2126,7 +2082,7 @@ export interface StudentsCreatedAllOf {
      * @type {StudentObject}
      * @memberof StudentsCreatedAllOf
      */
-    data?: StudentObject;
+    'data'?: StudentObject;
 }
 /**
  *
@@ -2139,7 +2095,7 @@ export interface StudentsDeleted extends Event {
      * @type {StudentObject}
      * @memberof StudentsDeleted
      */
-    data?: StudentObject;
+    'data'?: StudentObject;
 }
 /**
  *
@@ -2152,13 +2108,13 @@ export interface StudentsResponse {
      * @type {Array<StudentResponse>}
      * @memberof StudentsResponse
      */
-    data?: Array<StudentResponse>;
+    'data'?: Array<StudentResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof StudentsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -2171,13 +2127,13 @@ export interface StudentsUpdated extends Event {
      * @type {StudentObject}
      * @memberof StudentsUpdated
      */
-    data?: StudentObject;
+    'data'?: StudentObject;
     /**
      *
      * @type {object}
      * @memberof StudentsUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -2190,13 +2146,13 @@ export interface StudentsUpdatedAllOf {
      * @type {StudentObject}
      * @memberof StudentsUpdatedAllOf
      */
-    data?: StudentObject;
+    'data'?: StudentObject;
     /**
      *
      * @type {object}
      * @memberof StudentsUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -2209,85 +2165,85 @@ export interface Teacher {
      * @type {string}
      * @memberof Teacher
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    created?: string;
+    'created'?: string;
     /**
      *
      * @type {Credentials}
      * @memberof Teacher
      */
-    credentials?: Credentials;
+    'credentials'?: Credentials;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    district?: string;
+    'district'?: string;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    email?: string | null;
+    'email'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    last_modified?: string;
+    'last_modified'?: string;
     /**
      *
      * @type {Name}
      * @memberof Teacher
      */
-    name?: Name;
+    'name'?: Name;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    school?: string;
+    'school'?: string;
     /**
      *
      * @type {Array<string>}
      * @memberof Teacher
      */
-    schools?: Array<string>;
+    'schools'?: Array<string>;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    sis_id?: string;
+    'sis_id'?: string;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    state_id?: string | null;
+    'state_id'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    teacher_number?: string | null;
+    'teacher_number'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Teacher
      */
-    title?: string | null;
+    'title'?: string | null;
     /**
      *
      * @type {object}
      * @memberof Teacher
      */
-    ext?: object;
+    'ext'?: object;
 }
 /**
  *
@@ -2300,7 +2256,7 @@ export interface TeacherObject {
      * @type {Teacher}
      * @memberof TeacherObject
      */
-    object?: Teacher;
+    'object'?: Teacher;
 }
 /**
  *
@@ -2313,7 +2269,7 @@ export interface TeacherResponse {
      * @type {Teacher}
      * @memberof TeacherResponse
      */
-    data?: Teacher;
+    'data'?: Teacher;
 }
 /**
  *
@@ -2326,7 +2282,7 @@ export interface TeachersCreated extends Event {
      * @type {TeacherObject}
      * @memberof TeachersCreated
      */
-    data?: TeacherObject;
+    'data'?: TeacherObject;
 }
 /**
  *
@@ -2339,7 +2295,7 @@ export interface TeachersCreatedAllOf {
      * @type {TeacherObject}
      * @memberof TeachersCreatedAllOf
      */
-    data?: TeacherObject;
+    'data'?: TeacherObject;
 }
 /**
  *
@@ -2352,7 +2308,7 @@ export interface TeachersDeleted extends Event {
      * @type {TeacherObject}
      * @memberof TeachersDeleted
      */
-    data?: TeacherObject;
+    'data'?: TeacherObject;
 }
 /**
  *
@@ -2365,13 +2321,13 @@ export interface TeachersResponse {
      * @type {Array<TeacherResponse>}
      * @memberof TeachersResponse
      */
-    data?: Array<TeacherResponse>;
+    'data'?: Array<TeacherResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof TeachersResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -2384,13 +2340,13 @@ export interface TeachersUpdated extends Event {
      * @type {TeacherObject}
      * @memberof TeachersUpdated
      */
-    data?: TeacherObject;
+    'data'?: TeacherObject;
     /**
      *
      * @type {object}
      * @memberof TeachersUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -2403,13 +2359,13 @@ export interface TeachersUpdatedAllOf {
      * @type {TeacherObject}
      * @memberof TeachersUpdatedAllOf
      */
-    data?: TeacherObject;
+    'data'?: TeacherObject;
     /**
      *
      * @type {object}
      * @memberof TeachersUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -2422,31 +2378,31 @@ export interface Term {
      * @type {string}
      * @memberof Term
      */
-    id?: string;
+    'id'?: string;
     /**
      *
      * @type {string}
      * @memberof Term
      */
-    name?: string | null;
+    'name'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Term
      */
-    start_date?: string | null;
+    'start_date'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Term
      */
-    end_date?: string | null;
+    'end_date'?: string | null;
     /**
      *
      * @type {string}
      * @memberof Term
      */
-    district?: string;
+    'district'?: string;
 }
 /**
  *
@@ -2459,7 +2415,7 @@ export interface TermObject {
      * @type {Term}
      * @memberof TermObject
      */
-    object?: Term;
+    'object'?: Term;
 }
 /**
  *
@@ -2472,7 +2428,7 @@ export interface TermResponse {
      * @type {Term}
      * @memberof TermResponse
      */
-    data?: Term;
+    'data'?: Term;
 }
 /**
  *
@@ -2485,7 +2441,7 @@ export interface TermsCreated extends Event {
      * @type {TermObject}
      * @memberof TermsCreated
      */
-    data?: TermObject;
+    'data'?: TermObject;
 }
 /**
  *
@@ -2498,7 +2454,7 @@ export interface TermsCreatedAllOf {
      * @type {TermObject}
      * @memberof TermsCreatedAllOf
      */
-    data?: TermObject;
+    'data'?: TermObject;
 }
 /**
  *
@@ -2511,7 +2467,7 @@ export interface TermsDeleted extends Event {
      * @type {TermObject}
      * @memberof TermsDeleted
      */
-    data?: TermObject;
+    'data'?: TermObject;
 }
 /**
  *
@@ -2524,13 +2480,13 @@ export interface TermsResponse {
      * @type {Array<TermResponse>}
      * @memberof TermsResponse
      */
-    data?: Array<TermResponse>;
+    'data'?: Array<TermResponse>;
     /**
      *
      * @type {Array<Link>}
      * @memberof TermsResponse
      */
-    links?: Array<Link>;
+    'links'?: Array<Link>;
 }
 /**
  *
@@ -2543,13 +2499,13 @@ export interface TermsUpdated extends Event {
      * @type {TermObject}
      * @memberof TermsUpdated
      */
-    data?: TermObject;
+    'data'?: TermObject;
     /**
      *
      * @type {object}
      * @memberof TermsUpdated
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  *
@@ -2562,13 +2518,13 @@ export interface TermsUpdatedAllOf {
      * @type {TermObject}
      * @memberof TermsUpdatedAllOf
      */
-    data?: TermObject;
+    'data'?: TermObject;
     /**
      *
      * @type {object}
      * @memberof TermsUpdatedAllOf
      */
-    previous_attributes?: object;
+    'previous_attributes'?: object;
 }
 /**
  * ContactsApi - axios parameter creator
@@ -2581,24 +2537,24 @@ export declare const ContactsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getContact: (id: string, options?: any) => Promise<RequestArgs>;
+    getContact: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of student contacts
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getContacts: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getContacts: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the district for a student contact
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForContact: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForContact: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the students for a student contact
      * @param {string} id
@@ -2608,7 +2564,7 @@ export declare const ContactsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudentsForContact: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getStudentsForContact: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * ContactsApi - functional programming interface
@@ -2621,24 +2577,24 @@ export declare const ContactsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getContact(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<ContactResponse>>;
+    getContact(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<ContactResponse>>;
     /**
      * Returns a list of student contacts
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getContacts(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<ContactsResponse>>;
+    getContacts(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<ContactsResponse>>;
     /**
      * Returns the district for a student contact
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForContact(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForContact(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
      * Returns the students for a student contact
      * @param {string} id
@@ -2648,7 +2604,7 @@ export declare const ContactsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudentsForContact(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
+    getStudentsForContact(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
 };
 /**
  * ContactsApi - factory interface
@@ -2667,11 +2623,11 @@ export declare const ContactsApiFactory: (configuration?: Configuration | undefi
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getContacts(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<ContactsResponse>;
+    getContacts(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<ContactsResponse>;
     /**
      * Returns the district for a student contact
      * @param {string} id
@@ -2704,18 +2660,18 @@ export declare class ContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    getContact(id: string, options?: any): Promise<import("axios").AxiosResponse<ContactResponse>>;
+    getContact(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ContactResponse>>;
     /**
      * Returns a list of student contacts
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    getContacts(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<ContactsResponse>>;
+    getContacts(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ContactsResponse>>;
     /**
      * Returns the district for a student contact
      * @param {string} id
@@ -2723,7 +2679,7 @@ export declare class ContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    getDistrictForContact(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForContact(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
      * Returns the students for a student contact
      * @param {string} id
@@ -2734,7 +2690,7 @@ export declare class ContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    getStudentsForContact(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<StudentsResponse>>;
+    getStudentsForContact(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<StudentsResponse>>;
 }
 /**
  * CoursesApi - axios parameter creator
@@ -2747,24 +2703,24 @@ export declare const CoursesApiAxiosParamCreator: (configuration?: Configuration
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCourse: (id: string, options?: any) => Promise<RequestArgs>;
+    getCourse: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of courses
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCourses: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getCourses: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the district for a course
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForCourse: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForCourse: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the sections for a Courses
      * @param {string} id
@@ -2774,7 +2730,7 @@ export declare const CoursesApiAxiosParamCreator: (configuration?: Configuration
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForCourse: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getSectionsForCourse: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * CoursesApi - functional programming interface
@@ -2787,24 +2743,24 @@ export declare const CoursesApiFp: (configuration?: Configuration | undefined) =
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCourse(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<CourseResponse>>;
+    getCourse(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<CourseResponse>>;
     /**
      * Returns a list of courses
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCourses(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<CoursesResponse>>;
+    getCourses(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<CoursesResponse>>;
     /**
      * Returns the district for a course
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForCourse(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForCourse(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
      * Returns the sections for a Courses
      * @param {string} id
@@ -2814,7 +2770,7 @@ export declare const CoursesApiFp: (configuration?: Configuration | undefined) =
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForCourse(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
+    getSectionsForCourse(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
 };
 /**
  * CoursesApi - factory interface
@@ -2833,11 +2789,11 @@ export declare const CoursesApiFactory: (configuration?: Configuration | undefin
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCourses(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<CoursesResponse>;
+    getCourses(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<CoursesResponse>;
     /**
      * Returns the district for a course
      * @param {string} id
@@ -2870,18 +2826,18 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    getCourse(id: string, options?: any): Promise<import("axios").AxiosResponse<CourseResponse>>;
+    getCourse(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseResponse>>;
     /**
      * Returns a list of courses
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    getCourses(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<CoursesResponse>>;
+    getCourses(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<CoursesResponse>>;
     /**
      * Returns the district for a course
      * @param {string} id
@@ -2889,7 +2845,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    getDistrictForCourse(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForCourse(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
      * Returns the sections for a Courses
      * @param {string} id
@@ -2900,7 +2856,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    getSectionsForCourse(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<SectionsResponse>>;
+    getSectionsForCourse(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SectionsResponse>>;
 }
 /**
  * DistrictAdminsApi - axios parameter creator
@@ -2913,24 +2869,24 @@ export declare const DistrictAdminsApiAxiosParamCreator: (configuration?: Config
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictAdmin: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictAdmin: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of district admins
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictAdmins: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getDistrictAdmins: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the district for a district admin
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForDistrictAdmin: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForDistrictAdmin: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * DistrictAdminsApi - functional programming interface
@@ -2943,24 +2899,24 @@ export declare const DistrictAdminsApiFp: (configuration?: Configuration | undef
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictAdmin(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictAdminResponse>>;
+    getDistrictAdmin(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictAdminResponse>>;
     /**
      * Returns a list of district admins
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictAdmins(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictAdminsResponse>>;
+    getDistrictAdmins(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictAdminsResponse>>;
     /**
      * Returns the district for a district admin
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForDistrictAdmin(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForDistrictAdmin(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
 };
 /**
  * DistrictAdminsApi - factory interface
@@ -2979,11 +2935,11 @@ export declare const DistrictAdminsApiFactory: (configuration?: Configuration | 
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictAdmins(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<DistrictAdminsResponse>;
+    getDistrictAdmins(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<DistrictAdminsResponse>;
     /**
      * Returns the district for a district admin
      * @param {string} id
@@ -3006,18 +2962,18 @@ export declare class DistrictAdminsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DistrictAdminsApi
      */
-    getDistrictAdmin(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictAdminResponse>>;
+    getDistrictAdmin(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictAdminResponse>>;
     /**
      * Returns a list of district admins
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DistrictAdminsApi
      */
-    getDistrictAdmins(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<DistrictAdminsResponse>>;
+    getDistrictAdmins(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictAdminsResponse>>;
     /**
      * Returns the district for a district admin
      * @param {string} id
@@ -3025,7 +2981,7 @@ export declare class DistrictAdminsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DistrictAdminsApi
      */
-    getDistrictForDistrictAdmin(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForDistrictAdmin(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
 }
 /**
  * DistrictsApi - axios parameter creator
@@ -3038,14 +2994,14 @@ export declare const DistrictsApiAxiosParamCreator: (configuration?: Configurati
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrict: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrict: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
-     * Returns a list of districts
-     * @param {'' | 'true'} [count]
+     * Returns a list of districts. In practice this will only return the one district associated with the bearer token
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistricts: (count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getDistricts: (count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * DistrictsApi - functional programming interface
@@ -3058,14 +3014,14 @@ export declare const DistrictsApiFp: (configuration?: Configuration | undefined)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrict(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrict(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
-     * Returns a list of districts
-     * @param {'' | 'true'} [count]
+     * Returns a list of districts. In practice this will only return the one district associated with the bearer token
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistricts(count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictsResponse>>;
+    getDistricts(count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictsResponse>>;
 };
 /**
  * DistrictsApi - factory interface
@@ -3080,12 +3036,12 @@ export declare const DistrictsApiFactory: (configuration?: Configuration | undef
      */
     getDistrict(id: string, options?: any): AxiosPromise<DistrictResponse>;
     /**
-     * Returns a list of districts
-     * @param {'' | 'true'} [count]
+     * Returns a list of districts. In practice this will only return the one district associated with the bearer token
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistricts(count?: "" | "true" | undefined, options?: any): AxiosPromise<DistrictsResponse>;
+    getDistricts(count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<DistrictsResponse>;
 };
 /**
  * DistrictsApi - object-oriented interface
@@ -3101,15 +3057,15 @@ export declare class DistrictsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DistrictsApi
      */
-    getDistrict(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrict(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
-     * Returns a list of districts
-     * @param {'' | 'true'} [count]
+     * Returns a list of districts. In practice this will only return the one district associated with the bearer token
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DistrictsApi
      */
-    getDistricts(count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<DistrictsResponse>>;
+    getDistricts(count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictsResponse>>;
 }
 /**
  * EventsApi - axios parameter creator
@@ -3122,7 +3078,7 @@ export declare const EventsApiAxiosParamCreator: (configuration?: Configuration 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getEvent: (id: string, options?: any) => Promise<RequestArgs>;
+    getEvent: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of events
      * @param {number} [limit]
@@ -3133,7 +3089,7 @@ export declare const EventsApiAxiosParamCreator: (configuration?: Configuration 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getEvents: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, school?: string | undefined, recordType?: string[] | undefined, options?: any) => Promise<RequestArgs>;
+    getEvents: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, school?: string | undefined, recordType?: string[] | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * EventsApi - functional programming interface
@@ -3146,7 +3102,7 @@ export declare const EventsApiFp: (configuration?: Configuration | undefined) =>
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getEvent(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<EventResponse>>;
+    getEvent(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<EventResponse>>;
     /**
      * Returns a list of events
      * @param {number} [limit]
@@ -3157,7 +3113,7 @@ export declare const EventsApiFp: (configuration?: Configuration | undefined) =>
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getEvents(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, school?: string | undefined, recordType?: string[] | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<EventsResponse>>;
+    getEvents(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, school?: string | undefined, recordType?: string[] | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<EventsResponse>>;
 };
 /**
  * EventsApi - factory interface
@@ -3197,7 +3153,7 @@ export declare class EventsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    getEvent(id: string, options?: any): Promise<import("axios").AxiosResponse<EventResponse>>;
+    getEvent(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<EventResponse>>;
     /**
      * Returns a list of events
      * @param {number} [limit]
@@ -3209,7 +3165,7 @@ export declare class EventsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    getEvents(limit?: number, startingAfter?: string, endingBefore?: string, school?: string, recordType?: Array<string>, options?: any): Promise<import("axios").AxiosResponse<EventsResponse>>;
+    getEvents(limit?: number, startingAfter?: string, endingBefore?: string, school?: string, recordType?: Array<string>, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<EventsResponse>>;
 }
 /**
  * SchoolAdminsApi - axios parameter creator
@@ -3222,24 +3178,24 @@ export declare const SchoolAdminsApiAxiosParamCreator: (configuration?: Configur
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForSchoolAdmin: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForSchoolAdmin: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a specific school admin
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolAdmin: (id: string, options?: any) => Promise<RequestArgs>;
+    getSchoolAdmin: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of school admins
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolAdmins: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getSchoolAdmins: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the schools for a school admin
      * @param {string} id
@@ -3249,7 +3205,7 @@ export declare const SchoolAdminsApiAxiosParamCreator: (configuration?: Configur
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolsForSchoolAdmin: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getSchoolsForSchoolAdmin: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * SchoolAdminsApi - functional programming interface
@@ -3262,24 +3218,24 @@ export declare const SchoolAdminsApiFp: (configuration?: Configuration | undefin
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForSchoolAdmin(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForSchoolAdmin(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
      * Returns a specific school admin
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolAdmin(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolAdminResponse>>;
+    getSchoolAdmin(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolAdminResponse>>;
     /**
      * Returns a list of school admins
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolAdmins(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolAdminsResponse>>;
+    getSchoolAdmins(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolAdminsResponse>>;
     /**
      * Returns the schools for a school admin
      * @param {string} id
@@ -3289,7 +3245,7 @@ export declare const SchoolAdminsApiFp: (configuration?: Configuration | undefin
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolsForSchoolAdmin(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolsResponse>>;
+    getSchoolsForSchoolAdmin(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolsResponse>>;
 };
 /**
  * SchoolAdminsApi - factory interface
@@ -3315,11 +3271,11 @@ export declare const SchoolAdminsApiFactory: (configuration?: Configuration | un
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolAdmins(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<SchoolAdminsResponse>;
+    getSchoolAdmins(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<SchoolAdminsResponse>;
     /**
      * Returns the schools for a school admin
      * @param {string} id
@@ -3345,7 +3301,7 @@ export declare class SchoolAdminsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SchoolAdminsApi
      */
-    getDistrictForSchoolAdmin(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForSchoolAdmin(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
      * Returns a specific school admin
      * @param {string} id
@@ -3353,18 +3309,18 @@ export declare class SchoolAdminsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SchoolAdminsApi
      */
-    getSchoolAdmin(id: string, options?: any): Promise<import("axios").AxiosResponse<SchoolAdminResponse>>;
+    getSchoolAdmin(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolAdminResponse>>;
     /**
      * Returns a list of school admins
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchoolAdminsApi
      */
-    getSchoolAdmins(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<SchoolAdminsResponse>>;
+    getSchoolAdmins(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolAdminsResponse>>;
     /**
      * Returns the schools for a school admin
      * @param {string} id
@@ -3375,7 +3331,7 @@ export declare class SchoolAdminsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SchoolAdminsApi
      */
-    getSchoolsForSchoolAdmin(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<SchoolsResponse>>;
+    getSchoolsForSchoolAdmin(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolsResponse>>;
 }
 /**
  * SchoolsApi - axios parameter creator
@@ -3388,24 +3344,24 @@ export declare const SchoolsApiAxiosParamCreator: (configuration?: Configuration
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForSchool: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForSchool: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a specific school
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchool: (id: string, options?: any) => Promise<RequestArgs>;
+    getSchool: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of schools
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchools: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getSchools: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the sections for a school
      * @param {string} id
@@ -3415,7 +3371,7 @@ export declare const SchoolsApiAxiosParamCreator: (configuration?: Configuration
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForSchool: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getSectionsForSchool: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the students for a school
      * @param {string} id
@@ -3425,7 +3381,7 @@ export declare const SchoolsApiAxiosParamCreator: (configuration?: Configuration
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudentsForSchool: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getStudentsForSchool: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the teachers for a school
      * @param {string} id
@@ -3435,7 +3391,7 @@ export declare const SchoolsApiAxiosParamCreator: (configuration?: Configuration
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachersForSchool: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getTeachersForSchool: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * SchoolsApi - functional programming interface
@@ -3448,24 +3404,24 @@ export declare const SchoolsApiFp: (configuration?: Configuration | undefined) =
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForSchool(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForSchool(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
      * Returns a specific school
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchool(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolResponse>>;
+    getSchool(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolResponse>>;
     /**
      * Returns a list of schools
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchools(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolsResponse>>;
+    getSchools(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolsResponse>>;
     /**
      * Returns the sections for a school
      * @param {string} id
@@ -3475,7 +3431,7 @@ export declare const SchoolsApiFp: (configuration?: Configuration | undefined) =
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForSchool(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
+    getSectionsForSchool(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
     /**
      * Returns the students for a school
      * @param {string} id
@@ -3485,7 +3441,7 @@ export declare const SchoolsApiFp: (configuration?: Configuration | undefined) =
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudentsForSchool(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
+    getStudentsForSchool(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
     /**
      * Returns the teachers for a school
      * @param {string} id
@@ -3495,7 +3451,7 @@ export declare const SchoolsApiFp: (configuration?: Configuration | undefined) =
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachersForSchool(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeachersResponse>>;
+    getTeachersForSchool(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeachersResponse>>;
 };
 /**
  * SchoolsApi - factory interface
@@ -3521,11 +3477,11 @@ export declare const SchoolsApiFactory: (configuration?: Configuration | undefin
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchools(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<SchoolsResponse>;
+    getSchools(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<SchoolsResponse>;
     /**
      * Returns the sections for a school
      * @param {string} id
@@ -3571,7 +3527,7 @@ export declare class SchoolsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SchoolsApi
      */
-    getDistrictForSchool(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForSchool(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
      * Returns a specific school
      * @param {string} id
@@ -3579,18 +3535,18 @@ export declare class SchoolsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SchoolsApi
      */
-    getSchool(id: string, options?: any): Promise<import("axios").AxiosResponse<SchoolResponse>>;
+    getSchool(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolResponse>>;
     /**
      * Returns a list of schools
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchoolsApi
      */
-    getSchools(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<SchoolsResponse>>;
+    getSchools(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolsResponse>>;
     /**
      * Returns the sections for a school
      * @param {string} id
@@ -3601,7 +3557,7 @@ export declare class SchoolsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SchoolsApi
      */
-    getSectionsForSchool(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<SectionsResponse>>;
+    getSectionsForSchool(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SectionsResponse>>;
     /**
      * Returns the students for a school
      * @param {string} id
@@ -3612,7 +3568,7 @@ export declare class SchoolsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SchoolsApi
      */
-    getStudentsForSchool(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<StudentsResponse>>;
+    getStudentsForSchool(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<StudentsResponse>>;
     /**
      * Returns the teachers for a school
      * @param {string} id
@@ -3623,7 +3579,7 @@ export declare class SchoolsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SchoolsApi
      */
-    getTeachersForSchool(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<TeachersResponse>>;
+    getTeachersForSchool(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TeachersResponse>>;
 }
 /**
  * SectionsApi - axios parameter creator
@@ -3636,38 +3592,38 @@ export declare const SectionsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCourseForSection: (id: string, options?: any) => Promise<RequestArgs>;
+    getCourseForSection: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the district for a section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForSection: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForSection: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the school for a section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolForSection: (id: string, options?: any) => Promise<RequestArgs>;
+    getSchoolForSection: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a specific section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSection: (id: string, options?: any) => Promise<RequestArgs>;
+    getSection: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of sections
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSections: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getSections: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the students for a section
      * @param {string} id
@@ -3677,14 +3633,14 @@ export declare const SectionsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudentsForSection: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getStudentsForSection: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the primary teacher for a section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeacherForSection: (id: string, options?: any) => Promise<RequestArgs>;
+    getTeacherForSection: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the teachers for a section
      * @param {string} id
@@ -3694,14 +3650,14 @@ export declare const SectionsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachersForSection: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getTeachersForSection: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the term for a section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTermForSection: (id: string, options?: any) => Promise<RequestArgs>;
+    getTermForSection: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * SectionsApi - functional programming interface
@@ -3714,38 +3670,38 @@ export declare const SectionsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCourseForSection(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<CourseResponse>>;
+    getCourseForSection(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<CourseResponse>>;
     /**
      * Returns the district for a section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForSection(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForSection(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
      * Returns the school for a section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolForSection(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolResponse>>;
+    getSchoolForSection(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolResponse>>;
     /**
      * Returns a specific section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSection(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionResponse>>;
+    getSection(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionResponse>>;
     /**
      * Returns a list of sections
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSections(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
+    getSections(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
     /**
      * Returns the students for a section
      * @param {string} id
@@ -3755,14 +3711,14 @@ export declare const SectionsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudentsForSection(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
+    getStudentsForSection(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
     /**
      * Returns the primary teacher for a section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeacherForSection(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeacherResponse>>;
+    getTeacherForSection(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeacherResponse>>;
     /**
      * Returns the teachers for a section
      * @param {string} id
@@ -3772,14 +3728,14 @@ export declare const SectionsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachersForSection(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeachersResponse>>;
+    getTeachersForSection(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeachersResponse>>;
     /**
      * Returns the term for a section
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTermForSection(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TermResponse>>;
+    getTermForSection(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TermResponse>>;
 };
 /**
  * SectionsApi - factory interface
@@ -3819,11 +3775,11 @@ export declare const SectionsApiFactory: (configuration?: Configuration | undefi
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSections(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<SectionsResponse>;
+    getSections(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<SectionsResponse>;
     /**
      * Returns the students for a section
      * @param {string} id
@@ -3873,7 +3829,7 @@ export declare class SectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getCourseForSection(id: string, options?: any): Promise<import("axios").AxiosResponse<CourseResponse>>;
+    getCourseForSection(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseResponse>>;
     /**
      * Returns the district for a section
      * @param {string} id
@@ -3881,7 +3837,7 @@ export declare class SectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getDistrictForSection(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForSection(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
      * Returns the school for a section
      * @param {string} id
@@ -3889,7 +3845,7 @@ export declare class SectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getSchoolForSection(id: string, options?: any): Promise<import("axios").AxiosResponse<SchoolResponse>>;
+    getSchoolForSection(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolResponse>>;
     /**
      * Returns a specific section
      * @param {string} id
@@ -3897,18 +3853,18 @@ export declare class SectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getSection(id: string, options?: any): Promise<import("axios").AxiosResponse<SectionResponse>>;
+    getSection(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SectionResponse>>;
     /**
      * Returns a list of sections
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getSections(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<SectionsResponse>>;
+    getSections(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SectionsResponse>>;
     /**
      * Returns the students for a section
      * @param {string} id
@@ -3919,7 +3875,7 @@ export declare class SectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getStudentsForSection(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<StudentsResponse>>;
+    getStudentsForSection(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<StudentsResponse>>;
     /**
      * Returns the primary teacher for a section
      * @param {string} id
@@ -3927,7 +3883,7 @@ export declare class SectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getTeacherForSection(id: string, options?: any): Promise<import("axios").AxiosResponse<TeacherResponse>>;
+    getTeacherForSection(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TeacherResponse>>;
     /**
      * Returns the teachers for a section
      * @param {string} id
@@ -3938,7 +3894,7 @@ export declare class SectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getTeachersForSection(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<TeachersResponse>>;
+    getTeachersForSection(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TeachersResponse>>;
     /**
      * Returns the term for a section
      * @param {string} id
@@ -3946,7 +3902,7 @@ export declare class SectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SectionsApi
      */
-    getTermForSection(id: string, options?: any): Promise<import("axios").AxiosResponse<TermResponse>>;
+    getTermForSection(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TermResponse>>;
 }
 /**
  * StudentsApi - axios parameter creator
@@ -3962,21 +3918,21 @@ export declare const StudentsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getContactsForStudent: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getContactsForStudent: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the district for a student
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForStudent: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForStudent: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the primary school for a student
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolForStudent: (id: string, options?: any) => Promise<RequestArgs>;
+    getSchoolForStudent: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the schools for a student
      * @param {string} id
@@ -3986,7 +3942,7 @@ export declare const StudentsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolsForStudent: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getSchoolsForStudent: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the sections for a student
      * @param {string} id
@@ -3996,24 +3952,24 @@ export declare const StudentsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForStudent: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getSectionsForStudent: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a specific student
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudent: (id: string, options?: any) => Promise<RequestArgs>;
+    getStudent: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of students
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudents: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getStudents: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the teachers for a student
      * @param {string} id
@@ -4023,7 +3979,7 @@ export declare const StudentsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachersForStudent: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getTeachersForStudent: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * StudentsApi - functional programming interface
@@ -4039,21 +3995,21 @@ export declare const StudentsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getContactsForStudent(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<ContactsResponse>>;
+    getContactsForStudent(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<ContactsResponse>>;
     /**
      * Returns the district for a student
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForStudent(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForStudent(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
      * Returns the primary school for a student
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolForStudent(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolResponse>>;
+    getSchoolForStudent(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolResponse>>;
     /**
      * Returns the schools for a student
      * @param {string} id
@@ -4063,7 +4019,7 @@ export declare const StudentsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolsForStudent(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolsResponse>>;
+    getSchoolsForStudent(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolsResponse>>;
     /**
      * Returns the sections for a student
      * @param {string} id
@@ -4073,24 +4029,24 @@ export declare const StudentsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForStudent(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
+    getSectionsForStudent(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
     /**
      * Returns a specific student
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudent(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentResponse>>;
+    getStudent(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentResponse>>;
     /**
      * Returns a list of students
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudents(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
+    getStudents(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
     /**
      * Returns the teachers for a student
      * @param {string} id
@@ -4100,7 +4056,7 @@ export declare const StudentsApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachersForStudent(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeachersResponse>>;
+    getTeachersForStudent(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeachersResponse>>;
 };
 /**
  * StudentsApi - factory interface
@@ -4163,11 +4119,11 @@ export declare const StudentsApiFactory: (configuration?: Configuration | undefi
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudents(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<StudentsResponse>;
+    getStudents(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<StudentsResponse>;
     /**
      * Returns the teachers for a student
      * @param {string} id
@@ -4196,7 +4152,7 @@ export declare class StudentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StudentsApi
      */
-    getContactsForStudent(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<ContactsResponse>>;
+    getContactsForStudent(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ContactsResponse>>;
     /**
      * Returns the district for a student
      * @param {string} id
@@ -4204,7 +4160,7 @@ export declare class StudentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StudentsApi
      */
-    getDistrictForStudent(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForStudent(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
      * Returns the primary school for a student
      * @param {string} id
@@ -4212,7 +4168,7 @@ export declare class StudentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StudentsApi
      */
-    getSchoolForStudent(id: string, options?: any): Promise<import("axios").AxiosResponse<SchoolResponse>>;
+    getSchoolForStudent(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolResponse>>;
     /**
      * Returns the schools for a student
      * @param {string} id
@@ -4223,7 +4179,7 @@ export declare class StudentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StudentsApi
      */
-    getSchoolsForStudent(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<SchoolsResponse>>;
+    getSchoolsForStudent(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolsResponse>>;
     /**
      * Returns the sections for a student
      * @param {string} id
@@ -4234,7 +4190,7 @@ export declare class StudentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StudentsApi
      */
-    getSectionsForStudent(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<SectionsResponse>>;
+    getSectionsForStudent(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SectionsResponse>>;
     /**
      * Returns a specific student
      * @param {string} id
@@ -4242,18 +4198,18 @@ export declare class StudentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StudentsApi
      */
-    getStudent(id: string, options?: any): Promise<import("axios").AxiosResponse<StudentResponse>>;
+    getStudent(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<StudentResponse>>;
     /**
      * Returns a list of students
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StudentsApi
      */
-    getStudents(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<StudentsResponse>>;
+    getStudents(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<StudentsResponse>>;
     /**
      * Returns the teachers for a student
      * @param {string} id
@@ -4264,7 +4220,7 @@ export declare class StudentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StudentsApi
      */
-    getTeachersForStudent(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<TeachersResponse>>;
+    getTeachersForStudent(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TeachersResponse>>;
 }
 /**
  * TeachersApi - axios parameter creator
@@ -4277,14 +4233,14 @@ export declare const TeachersApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForTeacher: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForTeacher: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Retrieves school info for a teacher.
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolForTeacher: (id: string, options?: any) => Promise<RequestArgs>;
+    getSchoolForTeacher: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the schools for a teacher
      * @param {string} id
@@ -4294,7 +4250,7 @@ export declare const TeachersApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolsForTeacher: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getSchoolsForTeacher: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the sections for a teacher
      * @param {string} id
@@ -4304,7 +4260,7 @@ export declare const TeachersApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForTeacher: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getSectionsForTeacher: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the students for a teacher
      * @param {string} id
@@ -4314,24 +4270,24 @@ export declare const TeachersApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudentsForTeacher: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getStudentsForTeacher: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a specific teacher
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeacher: (id: string, options?: any) => Promise<RequestArgs>;
+    getTeacher: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of teachers
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachers: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getTeachers: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * TeachersApi - functional programming interface
@@ -4344,14 +4300,14 @@ export declare const TeachersApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForTeacher(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForTeacher(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
      * Retrieves school info for a teacher.
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolForTeacher(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolResponse>>;
+    getSchoolForTeacher(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolResponse>>;
     /**
      * Returns the schools for a teacher
      * @param {string} id
@@ -4361,7 +4317,7 @@ export declare const TeachersApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSchoolsForTeacher(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolsResponse>>;
+    getSchoolsForTeacher(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SchoolsResponse>>;
     /**
      * Returns the sections for a teacher
      * @param {string} id
@@ -4371,7 +4327,7 @@ export declare const TeachersApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForTeacher(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
+    getSectionsForTeacher(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
     /**
      * Returns the students for a teacher
      * @param {string} id
@@ -4381,24 +4337,24 @@ export declare const TeachersApiFp: (configuration?: Configuration | undefined) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStudentsForTeacher(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
+    getStudentsForTeacher(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<StudentsResponse>>;
     /**
      * Returns a specific teacher
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeacher(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeacherResponse>>;
+    getTeacher(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeacherResponse>>;
     /**
      * Returns a list of teachers
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachers(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeachersResponse>>;
+    getTeachers(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TeachersResponse>>;
 };
 /**
  * TeachersApi - factory interface
@@ -4461,11 +4417,11 @@ export declare const TeachersApiFactory: (configuration?: Configuration | undefi
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTeachers(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<TeachersResponse>;
+    getTeachers(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<TeachersResponse>;
 };
 /**
  * TeachersApi - object-oriented interface
@@ -4481,7 +4437,7 @@ export declare class TeachersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TeachersApi
      */
-    getDistrictForTeacher(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForTeacher(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
      * Retrieves school info for a teacher.
      * @param {string} id
@@ -4489,7 +4445,7 @@ export declare class TeachersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TeachersApi
      */
-    getSchoolForTeacher(id: string, options?: any): Promise<import("axios").AxiosResponse<SchoolResponse>>;
+    getSchoolForTeacher(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolResponse>>;
     /**
      * Returns the schools for a teacher
      * @param {string} id
@@ -4500,7 +4456,7 @@ export declare class TeachersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TeachersApi
      */
-    getSchoolsForTeacher(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<SchoolsResponse>>;
+    getSchoolsForTeacher(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SchoolsResponse>>;
     /**
      * Returns the sections for a teacher
      * @param {string} id
@@ -4511,7 +4467,7 @@ export declare class TeachersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TeachersApi
      */
-    getSectionsForTeacher(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<SectionsResponse>>;
+    getSectionsForTeacher(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SectionsResponse>>;
     /**
      * Returns the students for a teacher
      * @param {string} id
@@ -4522,7 +4478,7 @@ export declare class TeachersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TeachersApi
      */
-    getStudentsForTeacher(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<StudentsResponse>>;
+    getStudentsForTeacher(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<StudentsResponse>>;
     /**
      * Returns a specific teacher
      * @param {string} id
@@ -4530,18 +4486,18 @@ export declare class TeachersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TeachersApi
      */
-    getTeacher(id: string, options?: any): Promise<import("axios").AxiosResponse<TeacherResponse>>;
+    getTeacher(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TeacherResponse>>;
     /**
      * Returns a list of teachers
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeachersApi
      */
-    getTeachers(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<TeachersResponse>>;
+    getTeachers(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TeachersResponse>>;
 }
 /**
  * TermsApi - axios parameter creator
@@ -4554,7 +4510,7 @@ export declare const TermsApiAxiosParamCreator: (configuration?: Configuration |
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForTerm: (id: string, options?: any) => Promise<RequestArgs>;
+    getDistrictForTerm: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns the sections for a term
      * @param {string} id
@@ -4564,24 +4520,24 @@ export declare const TermsApiAxiosParamCreator: (configuration?: Configuration |
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForTerm: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any) => Promise<RequestArgs>;
+    getSectionsForTerm: (id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a specific term
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTerm: (id: string, options?: any) => Promise<RequestArgs>;
+    getTerm: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of terms
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTerms: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any) => Promise<RequestArgs>;
+    getTerms: (limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * TermsApi - functional programming interface
@@ -4594,7 +4550,7 @@ export declare const TermsApiFp: (configuration?: Configuration | undefined) => 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDistrictForTerm(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
+    getDistrictForTerm(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<DistrictResponse>>;
     /**
      * Returns the sections for a term
      * @param {string} id
@@ -4604,24 +4560,24 @@ export declare const TermsApiFp: (configuration?: Configuration | undefined) => 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSectionsForTerm(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
+    getSectionsForTerm(id: string, limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<SectionsResponse>>;
     /**
      * Returns a specific term
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTerm(id: string, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TermResponse>>;
+    getTerm(id: string, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TermResponse>>;
     /**
      * Returns a list of terms
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTerms(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TermsResponse>>;
+    getTerms(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: AxiosRequestConfig | undefined): Promise<(axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TermsResponse>>;
 };
 /**
  * TermsApi - factory interface
@@ -4657,11 +4613,11 @@ export declare const TermsApiFactory: (configuration?: Configuration | undefined
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getTerms(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "true" | undefined, options?: any): AxiosPromise<TermsResponse>;
+    getTerms(limit?: number | undefined, startingAfter?: string | undefined, endingBefore?: string | undefined, count?: "" | "undefined" | "true" | "false" | undefined, options?: any): AxiosPromise<TermsResponse>;
 };
 /**
  * TermsApi - object-oriented interface
@@ -4677,7 +4633,7 @@ export declare class TermsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TermsApi
      */
-    getDistrictForTerm(id: string, options?: any): Promise<import("axios").AxiosResponse<DistrictResponse>>;
+    getDistrictForTerm(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DistrictResponse>>;
     /**
      * Returns the sections for a term
      * @param {string} id
@@ -4688,7 +4644,7 @@ export declare class TermsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TermsApi
      */
-    getSectionsForTerm(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: any): Promise<import("axios").AxiosResponse<SectionsResponse>>;
+    getSectionsForTerm(id: string, limit?: number, startingAfter?: string, endingBefore?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SectionsResponse>>;
     /**
      * Returns a specific term
      * @param {string} id
@@ -4696,16 +4652,16 @@ export declare class TermsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TermsApi
      */
-    getTerm(id: string, options?: any): Promise<import("axios").AxiosResponse<TermResponse>>;
+    getTerm(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TermResponse>>;
     /**
      * Returns a list of terms
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TermsApi
      */
-    getTerms(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true', options?: any): Promise<import("axios").AxiosResponse<TermsResponse>>;
+    getTerms(limit?: number, startingAfter?: string, endingBefore?: string, count?: '' | 'true' | 'false' | 'undefined', options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TermsResponse>>;
 }

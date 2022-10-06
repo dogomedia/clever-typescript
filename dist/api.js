@@ -1,5 +1,6 @@
 "use strict";
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Data API
  * Serves the Clever Data API
@@ -13,309 +14,236 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TermsApi = exports.TermsApiFactory = exports.TermsApiFp = exports.TermsApiAxiosParamCreator = exports.TeachersApi = exports.TeachersApiFactory = exports.TeachersApiFp = exports.TeachersApiAxiosParamCreator = exports.StudentsApi = exports.StudentsApiFactory = exports.StudentsApiFp = exports.StudentsApiAxiosParamCreator = exports.SectionsApi = exports.SectionsApiFactory = exports.SectionsApiFp = exports.SectionsApiAxiosParamCreator = exports.SchoolsApi = exports.SchoolsApiFactory = exports.SchoolsApiFp = exports.SchoolsApiAxiosParamCreator = exports.SchoolAdminsApi = exports.SchoolAdminsApiFactory = exports.SchoolAdminsApiFp = exports.SchoolAdminsApiAxiosParamCreator = exports.EventsApi = exports.EventsApiFactory = exports.EventsApiFp = exports.EventsApiAxiosParamCreator = exports.DistrictsApi = exports.DistrictsApiFactory = exports.DistrictsApiFp = exports.DistrictsApiAxiosParamCreator = exports.DistrictAdminsApi = exports.DistrictAdminsApiFactory = exports.DistrictAdminsApiFp = exports.DistrictAdminsApiAxiosParamCreator = exports.CoursesApi = exports.CoursesApiFactory = exports.CoursesApiFp = exports.CoursesApiAxiosParamCreator = exports.ContactsApi = exports.ContactsApiFactory = exports.ContactsApiFp = exports.ContactsApiAxiosParamCreator = exports.StudentRaceEnum = exports.StudentHomeLanguageEnum = exports.StudentHispanicEthnicityEnum = exports.StudentGradeEnum = exports.StudentGenderEnum = exports.StudentEllStatusEnum = exports.SectionSubjectEnum = exports.SectionGradeEnum = exports.SchoolLowGradeEnum = exports.SchoolHighGradeEnum = exports.LinkRelEnum = exports.DistrictStateEnum = exports.ContactTypeEnum = exports.ContactRelationshipEnum = exports.ContactPhoneTypeEnum = void 0;
-const globalImportUrl = require("url");
 const axios_1 = require("axios");
 // Some imports not used depending on template conditions
 // @ts-ignore
+const common_1 = require("./common");
+// @ts-ignore
 const base_1 = require("./base");
-/**
-    * @export
-    * @enum {string}
-    */
-var ContactPhoneTypeEnum;
-(function (ContactPhoneTypeEnum) {
-    ContactPhoneTypeEnum["Cell"] = "Cell";
-    ContactPhoneTypeEnum["Home"] = "Home";
-    ContactPhoneTypeEnum["Work"] = "Work";
-    ContactPhoneTypeEnum["Other"] = "Other";
-    ContactPhoneTypeEnum["Empty"] = "";
-})(ContactPhoneTypeEnum = exports.ContactPhoneTypeEnum || (exports.ContactPhoneTypeEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var ContactRelationshipEnum;
-(function (ContactRelationshipEnum) {
-    ContactRelationshipEnum["Parent"] = "Parent";
-    ContactRelationshipEnum["Grandparent"] = "Grandparent";
-    ContactRelationshipEnum["Self"] = "Self";
-    ContactRelationshipEnum["AuntUncle"] = "Aunt/Uncle";
-    ContactRelationshipEnum["Sibling"] = "Sibling";
-    ContactRelationshipEnum["Other"] = "Other";
-    ContactRelationshipEnum["Empty"] = "";
-})(ContactRelationshipEnum = exports.ContactRelationshipEnum || (exports.ContactRelationshipEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var ContactTypeEnum;
-(function (ContactTypeEnum) {
-    ContactTypeEnum["ParentGuardian"] = "Parent/Guardian";
-    ContactTypeEnum["Emergency"] = "Emergency";
-    ContactTypeEnum["Primary"] = "Primary";
-    ContactTypeEnum["Secondary"] = "Secondary";
-    ContactTypeEnum["Family"] = "Family";
-    ContactTypeEnum["Other"] = "Other";
-    ContactTypeEnum["Empty"] = "";
-})(ContactTypeEnum = exports.ContactTypeEnum || (exports.ContactTypeEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var DistrictStateEnum;
-(function (DistrictStateEnum) {
-    DistrictStateEnum["Running"] = "running";
-    DistrictStateEnum["Pending"] = "pending";
-    DistrictStateEnum["Error"] = "error";
-    DistrictStateEnum["Paused"] = "paused";
-    DistrictStateEnum["Empty"] = "";
-})(DistrictStateEnum = exports.DistrictStateEnum || (exports.DistrictStateEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var LinkRelEnum;
-(function (LinkRelEnum) {
-    LinkRelEnum["Next"] = "next";
-    LinkRelEnum["Prev"] = "prev";
-    LinkRelEnum["Self"] = "self";
-})(LinkRelEnum = exports.LinkRelEnum || (exports.LinkRelEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var SchoolHighGradeEnum;
-(function (SchoolHighGradeEnum) {
-    SchoolHighGradeEnum["InfantToddler"] = "InfantToddler";
-    SchoolHighGradeEnum["Preschool"] = "Preschool";
-    SchoolHighGradeEnum["PreKindergarten"] = "PreKindergarten";
-    SchoolHighGradeEnum["TransitionalKindergarten"] = "TransitionalKindergarten";
-    SchoolHighGradeEnum["Kindergarten"] = "Kindergarten";
-    SchoolHighGradeEnum["_1"] = "1";
-    SchoolHighGradeEnum["_2"] = "2";
-    SchoolHighGradeEnum["_3"] = "3";
-    SchoolHighGradeEnum["_4"] = "4";
-    SchoolHighGradeEnum["_5"] = "5";
-    SchoolHighGradeEnum["_6"] = "6";
-    SchoolHighGradeEnum["_7"] = "7";
-    SchoolHighGradeEnum["_8"] = "8";
-    SchoolHighGradeEnum["_9"] = "9";
-    SchoolHighGradeEnum["_10"] = "10";
-    SchoolHighGradeEnum["_11"] = "11";
-    SchoolHighGradeEnum["_12"] = "12";
-    SchoolHighGradeEnum["_13"] = "13";
-    SchoolHighGradeEnum["PostGraduate"] = "PostGraduate";
-    SchoolHighGradeEnum["Ungraded"] = "Ungraded";
-    SchoolHighGradeEnum["Other"] = "Other";
-    SchoolHighGradeEnum["Empty"] = "";
-})(SchoolHighGradeEnum = exports.SchoolHighGradeEnum || (exports.SchoolHighGradeEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var SchoolLowGradeEnum;
-(function (SchoolLowGradeEnum) {
-    SchoolLowGradeEnum["InfantToddler"] = "InfantToddler";
-    SchoolLowGradeEnum["Preschool"] = "Preschool";
-    SchoolLowGradeEnum["PreKindergarten"] = "PreKindergarten";
-    SchoolLowGradeEnum["TransitionalKindergarten"] = "TransitionalKindergarten";
-    SchoolLowGradeEnum["Kindergarten"] = "Kindergarten";
-    SchoolLowGradeEnum["_1"] = "1";
-    SchoolLowGradeEnum["_2"] = "2";
-    SchoolLowGradeEnum["_3"] = "3";
-    SchoolLowGradeEnum["_4"] = "4";
-    SchoolLowGradeEnum["_5"] = "5";
-    SchoolLowGradeEnum["_6"] = "6";
-    SchoolLowGradeEnum["_7"] = "7";
-    SchoolLowGradeEnum["_8"] = "8";
-    SchoolLowGradeEnum["_9"] = "9";
-    SchoolLowGradeEnum["_10"] = "10";
-    SchoolLowGradeEnum["_11"] = "11";
-    SchoolLowGradeEnum["_12"] = "12";
-    SchoolLowGradeEnum["_13"] = "13";
-    SchoolLowGradeEnum["PostGraduate"] = "PostGraduate";
-    SchoolLowGradeEnum["Ungraded"] = "Ungraded";
-    SchoolLowGradeEnum["Other"] = "Other";
-    SchoolLowGradeEnum["Empty"] = "";
-})(SchoolLowGradeEnum = exports.SchoolLowGradeEnum || (exports.SchoolLowGradeEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var SectionGradeEnum;
-(function (SectionGradeEnum) {
-    SectionGradeEnum["InfantToddler"] = "InfantToddler";
-    SectionGradeEnum["Preschool"] = "Preschool";
-    SectionGradeEnum["PreKindergarten"] = "PreKindergarten";
-    SectionGradeEnum["TransitionalKindergarten"] = "TransitionalKindergarten";
-    SectionGradeEnum["Kindergarten"] = "Kindergarten";
-    SectionGradeEnum["_1"] = "1";
-    SectionGradeEnum["_2"] = "2";
-    SectionGradeEnum["_3"] = "3";
-    SectionGradeEnum["_4"] = "4";
-    SectionGradeEnum["_5"] = "5";
-    SectionGradeEnum["_6"] = "6";
-    SectionGradeEnum["_7"] = "7";
-    SectionGradeEnum["_8"] = "8";
-    SectionGradeEnum["_9"] = "9";
-    SectionGradeEnum["_10"] = "10";
-    SectionGradeEnum["_11"] = "11";
-    SectionGradeEnum["_12"] = "12";
-    SectionGradeEnum["_13"] = "13";
-    SectionGradeEnum["PostGraduate"] = "PostGraduate";
-    SectionGradeEnum["Ungraded"] = "Ungraded";
-    SectionGradeEnum["Other"] = "Other";
-    SectionGradeEnum["Empty"] = "";
-})(SectionGradeEnum = exports.SectionGradeEnum || (exports.SectionGradeEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var SectionSubjectEnum;
-(function (SectionSubjectEnum) {
-    SectionSubjectEnum["EnglishLanguageArts"] = "english/language arts";
-    SectionSubjectEnum["Math"] = "math";
-    SectionSubjectEnum["Science"] = "science";
-    SectionSubjectEnum["SocialStudies"] = "social studies";
-    SectionSubjectEnum["Language"] = "language";
-    SectionSubjectEnum["HomeroomAdvisory"] = "homeroom/advisory";
-    SectionSubjectEnum["InterventionsOnlineLearning"] = "interventions/online learning";
-    SectionSubjectEnum["TechnologyAndEngineering"] = "technology and engineering";
-    SectionSubjectEnum["PEAndHealth"] = "PE and health";
-    SectionSubjectEnum["ArtsAndMusic"] = "arts and music";
-    SectionSubjectEnum["Other"] = "other";
-    SectionSubjectEnum["Empty"] = "";
-})(SectionSubjectEnum = exports.SectionSubjectEnum || (exports.SectionSubjectEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var StudentEllStatusEnum;
-(function (StudentEllStatusEnum) {
-    StudentEllStatusEnum["Y"] = "Y";
-    StudentEllStatusEnum["N"] = "N";
-    StudentEllStatusEnum["Empty"] = "";
-})(StudentEllStatusEnum = exports.StudentEllStatusEnum || (exports.StudentEllStatusEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var StudentGenderEnum;
-(function (StudentGenderEnum) {
-    StudentGenderEnum["M"] = "M";
-    StudentGenderEnum["F"] = "F";
-    StudentGenderEnum["X"] = "X";
-    StudentGenderEnum["Empty"] = "";
-})(StudentGenderEnum = exports.StudentGenderEnum || (exports.StudentGenderEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var StudentGradeEnum;
-(function (StudentGradeEnum) {
-    StudentGradeEnum["InfantToddler"] = "InfantToddler";
-    StudentGradeEnum["Preschool"] = "Preschool";
-    StudentGradeEnum["PreKindergarten"] = "PreKindergarten";
-    StudentGradeEnum["TransitionalKindergarten"] = "TransitionalKindergarten";
-    StudentGradeEnum["Kindergarten"] = "Kindergarten";
-    StudentGradeEnum["_1"] = "1";
-    StudentGradeEnum["_2"] = "2";
-    StudentGradeEnum["_3"] = "3";
-    StudentGradeEnum["_4"] = "4";
-    StudentGradeEnum["_5"] = "5";
-    StudentGradeEnum["_6"] = "6";
-    StudentGradeEnum["_7"] = "7";
-    StudentGradeEnum["_8"] = "8";
-    StudentGradeEnum["_9"] = "9";
-    StudentGradeEnum["_10"] = "10";
-    StudentGradeEnum["_11"] = "11";
-    StudentGradeEnum["_12"] = "12";
-    StudentGradeEnum["_13"] = "13";
-    StudentGradeEnum["PostGraduate"] = "PostGraduate";
-    StudentGradeEnum["Ungraded"] = "Ungraded";
-    StudentGradeEnum["Other"] = "Other";
-    StudentGradeEnum["Empty"] = "";
-})(StudentGradeEnum = exports.StudentGradeEnum || (exports.StudentGradeEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var StudentHispanicEthnicityEnum;
-(function (StudentHispanicEthnicityEnum) {
-    StudentHispanicEthnicityEnum["Y"] = "Y";
-    StudentHispanicEthnicityEnum["N"] = "N";
-    StudentHispanicEthnicityEnum["Empty"] = "";
-})(StudentHispanicEthnicityEnum = exports.StudentHispanicEthnicityEnum || (exports.StudentHispanicEthnicityEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var StudentHomeLanguageEnum;
-(function (StudentHomeLanguageEnum) {
-    StudentHomeLanguageEnum["English"] = "English";
-    StudentHomeLanguageEnum["Albanian"] = "Albanian";
-    StudentHomeLanguageEnum["Amharic"] = "Amharic";
-    StudentHomeLanguageEnum["Arabic"] = "Arabic";
-    StudentHomeLanguageEnum["Bengali"] = "Bengali";
-    StudentHomeLanguageEnum["Bosnian"] = "Bosnian";
-    StudentHomeLanguageEnum["Burmese"] = "Burmese";
-    StudentHomeLanguageEnum["Cantonese"] = "Cantonese";
-    StudentHomeLanguageEnum["Chinese"] = "Chinese";
-    StudentHomeLanguageEnum["Dutch"] = "Dutch";
-    StudentHomeLanguageEnum["Farsi"] = "Farsi";
-    StudentHomeLanguageEnum["French"] = "French";
-    StudentHomeLanguageEnum["German"] = "German";
-    StudentHomeLanguageEnum["Hebrew"] = "Hebrew";
-    StudentHomeLanguageEnum["Hindi"] = "Hindi";
-    StudentHomeLanguageEnum["Hmong"] = "Hmong";
-    StudentHomeLanguageEnum["Ilocano"] = "Ilocano";
-    StudentHomeLanguageEnum["Japanese"] = "Japanese";
-    StudentHomeLanguageEnum["Javanese"] = "Javanese";
-    StudentHomeLanguageEnum["Karen"] = "Karen";
-    StudentHomeLanguageEnum["Khmer"] = "Khmer";
-    StudentHomeLanguageEnum["Korean"] = "Korean";
-    StudentHomeLanguageEnum["Laotian"] = "Laotian";
-    StudentHomeLanguageEnum["Latvian"] = "Latvian";
-    StudentHomeLanguageEnum["Malay"] = "Malay";
-    StudentHomeLanguageEnum["Mandarin"] = "Mandarin";
-    StudentHomeLanguageEnum["Nepali"] = "Nepali";
-    StudentHomeLanguageEnum["Oromo"] = "Oromo";
-    StudentHomeLanguageEnum["Polish"] = "Polish";
-    StudentHomeLanguageEnum["Portuguese"] = "Portuguese";
-    StudentHomeLanguageEnum["Punjabi"] = "Punjabi";
-    StudentHomeLanguageEnum["Romanian"] = "Romanian";
-    StudentHomeLanguageEnum["Russian"] = "Russian";
-    StudentHomeLanguageEnum["Samoan"] = "Samoan";
-    StudentHomeLanguageEnum["Serbian"] = "Serbian";
-    StudentHomeLanguageEnum["Somali"] = "Somali";
-    StudentHomeLanguageEnum["Spanish"] = "Spanish";
-    StudentHomeLanguageEnum["Swahili"] = "Swahili";
-    StudentHomeLanguageEnum["Tagalog"] = "Tagalog";
-    StudentHomeLanguageEnum["Tamil"] = "Tamil";
-    StudentHomeLanguageEnum["Telugu"] = "Telugu";
-    StudentHomeLanguageEnum["Thai"] = "Thai";
-    StudentHomeLanguageEnum["Tigrinya"] = "Tigrinya";
-    StudentHomeLanguageEnum["Turkish"] = "Turkish";
-    StudentHomeLanguageEnum["Ukrainian"] = "Ukrainian";
-    StudentHomeLanguageEnum["Urdu"] = "Urdu";
-    StudentHomeLanguageEnum["Vietnamese"] = "Vietnamese";
-    StudentHomeLanguageEnum["Empty"] = "";
-})(StudentHomeLanguageEnum = exports.StudentHomeLanguageEnum || (exports.StudentHomeLanguageEnum = {}));
-/**
-    * @export
-    * @enum {string}
-    */
-var StudentRaceEnum;
-(function (StudentRaceEnum) {
-    StudentRaceEnum["Caucasian"] = "Caucasian";
-    StudentRaceEnum["Asian"] = "Asian";
-    StudentRaceEnum["BlackOrAfricanAmerican"] = "Black or African American";
-    StudentRaceEnum["AmericanIndian"] = "American Indian";
-    StudentRaceEnum["HawaiianOrOtherPacificIslander"] = "Hawaiian or Other Pacific Islander";
-    StudentRaceEnum["TwoOrMoreRaces"] = "Two or More Races";
-    StudentRaceEnum["Unknown"] = "Unknown";
-    StudentRaceEnum["Empty"] = "";
-})(StudentRaceEnum = exports.StudentRaceEnum || (exports.StudentRaceEnum = {}));
+exports.ContactPhoneTypeEnum = {
+    Cell: 'Cell',
+    Home: 'Home',
+    Work: 'Work',
+    Other: 'Other',
+    Empty: ''
+};
+exports.ContactRelationshipEnum = {
+    Parent: 'Parent',
+    Grandparent: 'Grandparent',
+    Self: 'Self',
+    AuntUncle: 'Aunt/Uncle',
+    Sibling: 'Sibling',
+    Other: 'Other',
+    Empty: ''
+};
+exports.ContactTypeEnum = {
+    ParentGuardian: 'Parent/Guardian',
+    Emergency: 'Emergency',
+    Primary: 'Primary',
+    Secondary: 'Secondary',
+    Family: 'Family',
+    Other: 'Other',
+    Empty: ''
+};
+exports.DistrictStateEnum = {
+    Running: 'running',
+    Pending: 'pending',
+    Error: 'error',
+    Paused: 'paused',
+    Empty: '',
+    Success: 'success'
+};
+exports.LinkRelEnum = {
+    Next: 'next',
+    Prev: 'prev',
+    Self: 'self'
+};
+exports.SchoolHighGradeEnum = {
+    InfantToddler: 'InfantToddler',
+    Preschool: 'Preschool',
+    PreKindergarten: 'PreKindergarten',
+    TransitionalKindergarten: 'TransitionalKindergarten',
+    Kindergarten: 'Kindergarten',
+    _1: '1',
+    _2: '2',
+    _3: '3',
+    _4: '4',
+    _5: '5',
+    _6: '6',
+    _7: '7',
+    _8: '8',
+    _9: '9',
+    _10: '10',
+    _11: '11',
+    _12: '12',
+    _13: '13',
+    PostGraduate: 'PostGraduate',
+    Ungraded: 'Ungraded',
+    Other: 'Other',
+    Empty: ''
+};
+exports.SchoolLowGradeEnum = {
+    InfantToddler: 'InfantToddler',
+    Preschool: 'Preschool',
+    PreKindergarten: 'PreKindergarten',
+    TransitionalKindergarten: 'TransitionalKindergarten',
+    Kindergarten: 'Kindergarten',
+    _1: '1',
+    _2: '2',
+    _3: '3',
+    _4: '4',
+    _5: '5',
+    _6: '6',
+    _7: '7',
+    _8: '8',
+    _9: '9',
+    _10: '10',
+    _11: '11',
+    _12: '12',
+    _13: '13',
+    PostGraduate: 'PostGraduate',
+    Ungraded: 'Ungraded',
+    Other: 'Other',
+    Empty: ''
+};
+exports.SectionGradeEnum = {
+    InfantToddler: 'InfantToddler',
+    Preschool: 'Preschool',
+    PreKindergarten: 'PreKindergarten',
+    TransitionalKindergarten: 'TransitionalKindergarten',
+    Kindergarten: 'Kindergarten',
+    _1: '1',
+    _2: '2',
+    _3: '3',
+    _4: '4',
+    _5: '5',
+    _6: '6',
+    _7: '7',
+    _8: '8',
+    _9: '9',
+    _10: '10',
+    _11: '11',
+    _12: '12',
+    _13: '13',
+    PostGraduate: 'PostGraduate',
+    Ungraded: 'Ungraded',
+    Other: 'Other',
+    Empty: ''
+};
+exports.SectionSubjectEnum = {
+    EnglishLanguageArts: 'english/language arts',
+    Math: 'math',
+    Science: 'science',
+    SocialStudies: 'social studies',
+    Language: 'language',
+    HomeroomAdvisory: 'homeroom/advisory',
+    InterventionsOnlineLearning: 'interventions/online learning',
+    TechnologyAndEngineering: 'technology and engineering',
+    PeAndHealth: 'PE and health',
+    ArtsAndMusic: 'arts and music',
+    Other: 'other',
+    Empty: ''
+};
+exports.StudentEllStatusEnum = {
+    Y: 'Y',
+    N: 'N',
+    Empty: ''
+};
+exports.StudentGenderEnum = {
+    M: 'M',
+    F: 'F',
+    X: 'X',
+    Empty: ''
+};
+exports.StudentGradeEnum = {
+    InfantToddler: 'InfantToddler',
+    Preschool: 'Preschool',
+    PreKindergarten: 'PreKindergarten',
+    TransitionalKindergarten: 'TransitionalKindergarten',
+    Kindergarten: 'Kindergarten',
+    _1: '1',
+    _2: '2',
+    _3: '3',
+    _4: '4',
+    _5: '5',
+    _6: '6',
+    _7: '7',
+    _8: '8',
+    _9: '9',
+    _10: '10',
+    _11: '11',
+    _12: '12',
+    _13: '13',
+    PostGraduate: 'PostGraduate',
+    Ungraded: 'Ungraded',
+    Other: 'Other',
+    Empty: ''
+};
+exports.StudentHispanicEthnicityEnum = {
+    Y: 'Y',
+    N: 'N',
+    Empty: ''
+};
+exports.StudentHomeLanguageEnum = {
+    English: 'English',
+    Albanian: 'Albanian',
+    Amharic: 'Amharic',
+    Arabic: 'Arabic',
+    Bengali: 'Bengali',
+    Bosnian: 'Bosnian',
+    Burmese: 'Burmese',
+    Cantonese: 'Cantonese',
+    Chinese: 'Chinese',
+    Dutch: 'Dutch',
+    Farsi: 'Farsi',
+    French: 'French',
+    German: 'German',
+    Hebrew: 'Hebrew',
+    Hindi: 'Hindi',
+    Hmong: 'Hmong',
+    Ilocano: 'Ilocano',
+    Japanese: 'Japanese',
+    Javanese: 'Javanese',
+    Karen: 'Karen',
+    Khmer: 'Khmer',
+    Korean: 'Korean',
+    Laotian: 'Laotian',
+    Latvian: 'Latvian',
+    Malay: 'Malay',
+    Mandarin: 'Mandarin',
+    Nepali: 'Nepali',
+    Oromo: 'Oromo',
+    Polish: 'Polish',
+    Portuguese: 'Portuguese',
+    Punjabi: 'Punjabi',
+    Romanian: 'Romanian',
+    Russian: 'Russian',
+    Samoan: 'Samoan',
+    Serbian: 'Serbian',
+    Somali: 'Somali',
+    Spanish: 'Spanish',
+    Swahili: 'Swahili',
+    Tagalog: 'Tagalog',
+    Tamil: 'Tamil',
+    Telugu: 'Telugu',
+    Thai: 'Thai',
+    Tigrinya: 'Tigrinya',
+    Turkish: 'Turkish',
+    Ukrainian: 'Ukrainian',
+    Urdu: 'Urdu',
+    Vietnamese: 'Vietnamese',
+    Empty: ''
+};
+exports.StudentRaceEnum = {
+    Caucasian: 'Caucasian',
+    Asian: 'Asian',
+    BlackOrAfricanAmerican: 'Black or African American',
+    AmericanIndian: 'American Indian',
+    HawaiianOrOtherPacificIslander: 'Hawaiian or Other Pacific Islander',
+    TwoOrMoreRaces: 'Two or More Races',
+    Unknown: 'Unknown',
+    Empty: ''
+};
 /**
  * ContactsApi - axios parameter creator
  * @export
@@ -330,12 +258,11 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
          */
         getContact: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getContact.');
-            }
+            common_1.assertParamExists('getContact', 'id', id);
             const localVarPath = `/contacts/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -345,19 +272,12 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -366,13 +286,14 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getContacts: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/contacts`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -382,12 +303,7 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -400,13 +316,11 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -418,12 +332,11 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForContact: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForContact.');
-            }
+            common_1.assertParamExists('getDistrictForContact', 'id', id);
             const localVarPath = `/contacts/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -433,19 +346,12 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -460,12 +366,11 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
          */
         getStudentsForContact: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getStudentsForContact.');
-            }
+            common_1.assertParamExists('getStudentsForContact', 'id', id);
             const localVarPath = `/contacts/{id}/students`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -475,12 +380,7 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -490,13 +390,11 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -507,6 +405,7 @@ exports.ContactsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.ContactsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.ContactsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns a specific student contact
@@ -515,27 +414,21 @@ exports.ContactsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getContact(id, options) {
-            const localVarAxiosArgs = await exports.ContactsApiAxiosParamCreator(configuration).getContact(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getContact(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of student contacts
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getContacts(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.ContactsApiAxiosParamCreator(configuration).getContacts(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getContacts(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the district for a student contact
@@ -544,11 +437,8 @@ exports.ContactsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForContact(id, options) {
-            const localVarAxiosArgs = await exports.ContactsApiAxiosParamCreator(configuration).getDistrictForContact(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForContact(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the students for a student contact
@@ -560,11 +450,8 @@ exports.ContactsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getStudentsForContact(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.ContactsApiAxiosParamCreator(configuration).getStudentsForContact(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStudentsForContact(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -573,6 +460,7 @@ exports.ContactsApiFp = function (configuration) {
  * @export
  */
 exports.ContactsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.ContactsApiFp(configuration);
     return {
         /**
          * Returns a specific student contact
@@ -581,19 +469,19 @@ exports.ContactsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getContact(id, options) {
-            return exports.ContactsApiFp(configuration).getContact(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getContact(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of student contacts
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getContacts(limit, startingAfter, endingBefore, count, options) {
-            return exports.ContactsApiFp(configuration).getContacts(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getContacts(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the district for a student contact
@@ -602,7 +490,7 @@ exports.ContactsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForContact(id, options) {
-            return exports.ContactsApiFp(configuration).getDistrictForContact(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForContact(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the students for a student contact
@@ -614,7 +502,7 @@ exports.ContactsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getStudentsForContact(id, limit, startingAfter, endingBefore, options) {
-            return exports.ContactsApiFp(configuration).getStudentsForContact(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getStudentsForContact(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -640,7 +528,7 @@ class ContactsApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContactsApi
@@ -687,12 +575,11 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
          */
         getCourse: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getCourse.');
-            }
+            common_1.assertParamExists('getCourse', 'id', id);
             const localVarPath = `/courses/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -702,19 +589,12 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -723,13 +603,14 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getCourses: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/courses`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -739,12 +620,7 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -757,13 +633,11 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -775,12 +649,11 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForCourse: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForCourse.');
-            }
+            common_1.assertParamExists('getDistrictForCourse', 'id', id);
             const localVarPath = `/courses/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -790,19 +663,12 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -817,12 +683,11 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
          */
         getSectionsForCourse: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSectionsForCourse.');
-            }
+            common_1.assertParamExists('getSectionsForCourse', 'id', id);
             const localVarPath = `/courses/{id}/sections`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -832,12 +697,7 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -847,13 +707,11 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -864,6 +722,7 @@ exports.CoursesApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.CoursesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.CoursesApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns a specific course
@@ -872,27 +731,21 @@ exports.CoursesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getCourse(id, options) {
-            const localVarAxiosArgs = await exports.CoursesApiAxiosParamCreator(configuration).getCourse(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCourse(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of courses
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getCourses(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.CoursesApiAxiosParamCreator(configuration).getCourses(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCourses(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the district for a course
@@ -901,11 +754,8 @@ exports.CoursesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForCourse(id, options) {
-            const localVarAxiosArgs = await exports.CoursesApiAxiosParamCreator(configuration).getDistrictForCourse(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForCourse(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the sections for a Courses
@@ -917,11 +767,8 @@ exports.CoursesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSectionsForCourse(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.CoursesApiAxiosParamCreator(configuration).getSectionsForCourse(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSectionsForCourse(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -930,6 +777,7 @@ exports.CoursesApiFp = function (configuration) {
  * @export
  */
 exports.CoursesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.CoursesApiFp(configuration);
     return {
         /**
          * Returns a specific course
@@ -938,19 +786,19 @@ exports.CoursesApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getCourse(id, options) {
-            return exports.CoursesApiFp(configuration).getCourse(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getCourse(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of courses
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getCourses(limit, startingAfter, endingBefore, count, options) {
-            return exports.CoursesApiFp(configuration).getCourses(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getCourses(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the district for a course
@@ -959,7 +807,7 @@ exports.CoursesApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForCourse(id, options) {
-            return exports.CoursesApiFp(configuration).getDistrictForCourse(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForCourse(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the sections for a Courses
@@ -971,7 +819,7 @@ exports.CoursesApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSectionsForCourse(id, limit, startingAfter, endingBefore, options) {
-            return exports.CoursesApiFp(configuration).getSectionsForCourse(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getSectionsForCourse(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -997,7 +845,7 @@ class CoursesApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CoursesApi
@@ -1044,12 +892,11 @@ exports.DistrictAdminsApiAxiosParamCreator = function (configuration) {
          */
         getDistrictAdmin: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictAdmin.');
-            }
+            common_1.assertParamExists('getDistrictAdmin', 'id', id);
             const localVarPath = `/district_admins/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1059,19 +906,12 @@ exports.DistrictAdminsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1080,13 +920,14 @@ exports.DistrictAdminsApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getDistrictAdmins: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/district_admins`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1096,12 +937,7 @@ exports.DistrictAdminsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -1114,13 +950,11 @@ exports.DistrictAdminsApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1132,12 +966,11 @@ exports.DistrictAdminsApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForDistrictAdmin: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForDistrictAdmin.');
-            }
+            common_1.assertParamExists('getDistrictForDistrictAdmin', 'id', id);
             const localVarPath = `/district_admins/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1147,19 +980,12 @@ exports.DistrictAdminsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1170,6 +996,7 @@ exports.DistrictAdminsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.DistrictAdminsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.DistrictAdminsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns a specific district admin
@@ -1178,27 +1005,21 @@ exports.DistrictAdminsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictAdmin(id, options) {
-            const localVarAxiosArgs = await exports.DistrictAdminsApiAxiosParamCreator(configuration).getDistrictAdmin(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictAdmin(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of district admins
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getDistrictAdmins(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.DistrictAdminsApiAxiosParamCreator(configuration).getDistrictAdmins(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictAdmins(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the district for a district admin
@@ -1207,11 +1028,8 @@ exports.DistrictAdminsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForDistrictAdmin(id, options) {
-            const localVarAxiosArgs = await exports.DistrictAdminsApiAxiosParamCreator(configuration).getDistrictForDistrictAdmin(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForDistrictAdmin(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -1220,6 +1038,7 @@ exports.DistrictAdminsApiFp = function (configuration) {
  * @export
  */
 exports.DistrictAdminsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.DistrictAdminsApiFp(configuration);
     return {
         /**
          * Returns a specific district admin
@@ -1228,19 +1047,19 @@ exports.DistrictAdminsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictAdmin(id, options) {
-            return exports.DistrictAdminsApiFp(configuration).getDistrictAdmin(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictAdmin(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of district admins
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getDistrictAdmins(limit, startingAfter, endingBefore, count, options) {
-            return exports.DistrictAdminsApiFp(configuration).getDistrictAdmins(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictAdmins(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the district for a district admin
@@ -1249,7 +1068,7 @@ exports.DistrictAdminsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForDistrictAdmin(id, options) {
-            return exports.DistrictAdminsApiFp(configuration).getDistrictForDistrictAdmin(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForDistrictAdmin(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1275,7 +1094,7 @@ class DistrictAdminsApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DistrictAdminsApi
@@ -1309,12 +1128,11 @@ exports.DistrictsApiAxiosParamCreator = function (configuration) {
          */
         getDistrict: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrict.');
-            }
+            common_1.assertParamExists('getDistrict', 'id', id);
             const localVarPath = `/districts/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1324,31 +1142,25 @@ exports.DistrictsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
         /**
-         * Returns a list of districts
-         * @param {'' | 'true'} [count]
+         * Returns a list of districts. In practice this will only return the one district associated with the bearer token
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getDistricts: async (count, options = {}) => {
             const localVarPath = `/districts`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1358,22 +1170,15 @@ exports.DistrictsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1384,6 +1189,7 @@ exports.DistrictsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.DistrictsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.DistrictsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns a specific district
@@ -1392,24 +1198,18 @@ exports.DistrictsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrict(id, options) {
-            const localVarAxiosArgs = await exports.DistrictsApiAxiosParamCreator(configuration).getDistrict(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrict(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
-         * Returns a list of districts
-         * @param {'' | 'true'} [count]
+         * Returns a list of districts. In practice this will only return the one district associated with the bearer token
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getDistricts(count, options) {
-            const localVarAxiosArgs = await exports.DistrictsApiAxiosParamCreator(configuration).getDistricts(count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistricts(count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -1418,6 +1218,7 @@ exports.DistrictsApiFp = function (configuration) {
  * @export
  */
 exports.DistrictsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.DistrictsApiFp(configuration);
     return {
         /**
          * Returns a specific district
@@ -1426,16 +1227,16 @@ exports.DistrictsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrict(id, options) {
-            return exports.DistrictsApiFp(configuration).getDistrict(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrict(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a list of districts
-         * @param {'' | 'true'} [count]
+         * Returns a list of districts. In practice this will only return the one district associated with the bearer token
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getDistricts(count, options) {
-            return exports.DistrictsApiFp(configuration).getDistricts(count, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistricts(count, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1457,8 +1258,8 @@ class DistrictsApi extends base_1.BaseAPI {
         return exports.DistrictsApiFp(this.configuration).getDistrict(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Returns a list of districts
-     * @param {'' | 'true'} [count]
+     * Returns a list of districts. In practice this will only return the one district associated with the bearer token
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DistrictsApi
@@ -1482,12 +1283,11 @@ exports.EventsApiAxiosParamCreator = function (configuration) {
          */
         getEvent: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getEvent.');
-            }
+            common_1.assertParamExists('getEvent', 'id', id);
             const localVarPath = `/events/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1497,19 +1297,12 @@ exports.EventsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1525,7 +1318,8 @@ exports.EventsApiAxiosParamCreator = function (configuration) {
          */
         getEvents: async (limit, startingAfter, endingBefore, school, recordType, options = {}) => {
             const localVarPath = `/events`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1535,12 +1329,7 @@ exports.EventsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -1556,13 +1345,11 @@ exports.EventsApiAxiosParamCreator = function (configuration) {
             if (recordType) {
                 localVarQueryParameter['record_type'] = recordType;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1573,6 +1360,7 @@ exports.EventsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.EventsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.EventsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns the specific event
@@ -1581,11 +1369,8 @@ exports.EventsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getEvent(id, options) {
-            const localVarAxiosArgs = await exports.EventsApiAxiosParamCreator(configuration).getEvent(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getEvent(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of events
@@ -1598,11 +1383,8 @@ exports.EventsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getEvents(limit, startingAfter, endingBefore, school, recordType, options) {
-            const localVarAxiosArgs = await exports.EventsApiAxiosParamCreator(configuration).getEvents(limit, startingAfter, endingBefore, school, recordType, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getEvents(limit, startingAfter, endingBefore, school, recordType, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -1611,6 +1393,7 @@ exports.EventsApiFp = function (configuration) {
  * @export
  */
 exports.EventsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.EventsApiFp(configuration);
     return {
         /**
          * Returns the specific event
@@ -1619,7 +1402,7 @@ exports.EventsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getEvent(id, options) {
-            return exports.EventsApiFp(configuration).getEvent(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getEvent(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of events
@@ -1632,7 +1415,7 @@ exports.EventsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getEvents(limit, startingAfter, endingBefore, school, recordType, options) {
-            return exports.EventsApiFp(configuration).getEvents(limit, startingAfter, endingBefore, school, recordType, options).then((request) => request(axios, basePath));
+            return localVarFp.getEvents(limit, startingAfter, endingBefore, school, recordType, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1683,12 +1466,11 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForSchoolAdmin: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForSchoolAdmin.');
-            }
+            common_1.assertParamExists('getDistrictForSchoolAdmin', 'id', id);
             const localVarPath = `/school_admins/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1698,19 +1480,12 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1722,12 +1497,11 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
          */
         getSchoolAdmin: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSchoolAdmin.');
-            }
+            common_1.assertParamExists('getSchoolAdmin', 'id', id);
             const localVarPath = `/school_admins/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1737,19 +1511,12 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1758,13 +1525,14 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getSchoolAdmins: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/school_admins`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1774,12 +1542,7 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -1792,13 +1555,11 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1813,12 +1574,11 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
          */
         getSchoolsForSchoolAdmin: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSchoolsForSchoolAdmin.');
-            }
+            common_1.assertParamExists('getSchoolsForSchoolAdmin', 'id', id);
             const localVarPath = `/school_admins/{id}/schools`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -1828,12 +1588,7 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -1843,13 +1598,11 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1860,6 +1613,7 @@ exports.SchoolAdminsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.SchoolAdminsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.SchoolAdminsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns the district for a school admin
@@ -1868,11 +1622,8 @@ exports.SchoolAdminsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForSchoolAdmin(id, options) {
-            const localVarAxiosArgs = await exports.SchoolAdminsApiAxiosParamCreator(configuration).getDistrictForSchoolAdmin(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForSchoolAdmin(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a specific school admin
@@ -1881,27 +1632,21 @@ exports.SchoolAdminsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSchoolAdmin(id, options) {
-            const localVarAxiosArgs = await exports.SchoolAdminsApiAxiosParamCreator(configuration).getSchoolAdmin(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchoolAdmin(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of school admins
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getSchoolAdmins(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.SchoolAdminsApiAxiosParamCreator(configuration).getSchoolAdmins(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchoolAdmins(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the schools for a school admin
@@ -1913,11 +1658,8 @@ exports.SchoolAdminsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSchoolsForSchoolAdmin(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.SchoolAdminsApiAxiosParamCreator(configuration).getSchoolsForSchoolAdmin(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchoolsForSchoolAdmin(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -1926,6 +1668,7 @@ exports.SchoolAdminsApiFp = function (configuration) {
  * @export
  */
 exports.SchoolAdminsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.SchoolAdminsApiFp(configuration);
     return {
         /**
          * Returns the district for a school admin
@@ -1934,7 +1677,7 @@ exports.SchoolAdminsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForSchoolAdmin(id, options) {
-            return exports.SchoolAdminsApiFp(configuration).getDistrictForSchoolAdmin(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForSchoolAdmin(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a specific school admin
@@ -1943,19 +1686,19 @@ exports.SchoolAdminsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSchoolAdmin(id, options) {
-            return exports.SchoolAdminsApiFp(configuration).getSchoolAdmin(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchoolAdmin(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of school admins
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getSchoolAdmins(limit, startingAfter, endingBefore, count, options) {
-            return exports.SchoolAdminsApiFp(configuration).getSchoolAdmins(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchoolAdmins(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the schools for a school admin
@@ -1967,7 +1710,7 @@ exports.SchoolAdminsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSchoolsForSchoolAdmin(id, limit, startingAfter, endingBefore, options) {
-            return exports.SchoolAdminsApiFp(configuration).getSchoolsForSchoolAdmin(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchoolsForSchoolAdmin(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2003,7 +1746,7 @@ class SchoolAdminsApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchoolAdminsApi
@@ -2040,12 +1783,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForSchool: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForSchool.');
-            }
+            common_1.assertParamExists('getDistrictForSchool', 'id', id);
             const localVarPath = `/schools/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2055,19 +1797,12 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2079,12 +1814,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
          */
         getSchool: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSchool.');
-            }
+            common_1.assertParamExists('getSchool', 'id', id);
             const localVarPath = `/schools/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2094,19 +1828,12 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2115,13 +1842,14 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getSchools: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/schools`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2131,12 +1859,7 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -2149,13 +1872,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2170,12 +1891,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
          */
         getSectionsForSchool: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSectionsForSchool.');
-            }
+            common_1.assertParamExists('getSectionsForSchool', 'id', id);
             const localVarPath = `/schools/{id}/sections`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2185,12 +1905,7 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -2200,13 +1915,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2221,12 +1934,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
          */
         getStudentsForSchool: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getStudentsForSchool.');
-            }
+            common_1.assertParamExists('getStudentsForSchool', 'id', id);
             const localVarPath = `/schools/{id}/students`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2236,12 +1948,7 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -2251,13 +1958,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2272,12 +1977,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
          */
         getTeachersForSchool: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getTeachersForSchool.');
-            }
+            common_1.assertParamExists('getTeachersForSchool', 'id', id);
             const localVarPath = `/schools/{id}/teachers`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2287,12 +1991,7 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -2302,13 +2001,11 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2319,6 +2016,7 @@ exports.SchoolsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.SchoolsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.SchoolsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns the district for a school
@@ -2327,11 +2025,8 @@ exports.SchoolsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForSchool(id, options) {
-            const localVarAxiosArgs = await exports.SchoolsApiAxiosParamCreator(configuration).getDistrictForSchool(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForSchool(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a specific school
@@ -2340,27 +2035,21 @@ exports.SchoolsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSchool(id, options) {
-            const localVarAxiosArgs = await exports.SchoolsApiAxiosParamCreator(configuration).getSchool(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchool(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of schools
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getSchools(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.SchoolsApiAxiosParamCreator(configuration).getSchools(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchools(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the sections for a school
@@ -2372,11 +2061,8 @@ exports.SchoolsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSectionsForSchool(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.SchoolsApiAxiosParamCreator(configuration).getSectionsForSchool(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSectionsForSchool(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the students for a school
@@ -2388,11 +2074,8 @@ exports.SchoolsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getStudentsForSchool(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.SchoolsApiAxiosParamCreator(configuration).getStudentsForSchool(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStudentsForSchool(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the teachers for a school
@@ -2404,11 +2087,8 @@ exports.SchoolsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getTeachersForSchool(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.SchoolsApiAxiosParamCreator(configuration).getTeachersForSchool(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeachersForSchool(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -2417,6 +2097,7 @@ exports.SchoolsApiFp = function (configuration) {
  * @export
  */
 exports.SchoolsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.SchoolsApiFp(configuration);
     return {
         /**
          * Returns the district for a school
@@ -2425,7 +2106,7 @@ exports.SchoolsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForSchool(id, options) {
-            return exports.SchoolsApiFp(configuration).getDistrictForSchool(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForSchool(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a specific school
@@ -2434,19 +2115,19 @@ exports.SchoolsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSchool(id, options) {
-            return exports.SchoolsApiFp(configuration).getSchool(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchool(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of schools
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getSchools(limit, startingAfter, endingBefore, count, options) {
-            return exports.SchoolsApiFp(configuration).getSchools(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchools(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the sections for a school
@@ -2458,7 +2139,7 @@ exports.SchoolsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSectionsForSchool(id, limit, startingAfter, endingBefore, options) {
-            return exports.SchoolsApiFp(configuration).getSectionsForSchool(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getSectionsForSchool(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the students for a school
@@ -2470,7 +2151,7 @@ exports.SchoolsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getStudentsForSchool(id, limit, startingAfter, endingBefore, options) {
-            return exports.SchoolsApiFp(configuration).getStudentsForSchool(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getStudentsForSchool(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the teachers for a school
@@ -2482,7 +2163,7 @@ exports.SchoolsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getTeachersForSchool(id, limit, startingAfter, endingBefore, options) {
-            return exports.SchoolsApiFp(configuration).getTeachersForSchool(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getTeachersForSchool(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2518,7 +2199,7 @@ class SchoolsApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchoolsApi
@@ -2581,12 +2262,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          */
         getCourseForSection: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getCourseForSection.');
-            }
+            common_1.assertParamExists('getCourseForSection', 'id', id);
             const localVarPath = `/sections/{id}/course`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2596,19 +2276,12 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2620,12 +2293,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForSection: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForSection.');
-            }
+            common_1.assertParamExists('getDistrictForSection', 'id', id);
             const localVarPath = `/sections/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2635,19 +2307,12 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2659,12 +2324,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          */
         getSchoolForSection: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSchoolForSection.');
-            }
+            common_1.assertParamExists('getSchoolForSection', 'id', id);
             const localVarPath = `/sections/{id}/school`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2674,19 +2338,12 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2698,12 +2355,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          */
         getSection: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSection.');
-            }
+            common_1.assertParamExists('getSection', 'id', id);
             const localVarPath = `/sections/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2713,19 +2369,12 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2734,13 +2383,14 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getSections: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/sections`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2750,12 +2400,7 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -2768,13 +2413,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2789,12 +2432,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          */
         getStudentsForSection: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getStudentsForSection.');
-            }
+            common_1.assertParamExists('getStudentsForSection', 'id', id);
             const localVarPath = `/sections/{id}/students`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2804,12 +2446,7 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -2819,13 +2456,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2837,12 +2472,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          */
         getTeacherForSection: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getTeacherForSection.');
-            }
+            common_1.assertParamExists('getTeacherForSection', 'id', id);
             const localVarPath = `/sections/{id}/teacher`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2852,19 +2486,12 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2879,12 +2506,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          */
         getTeachersForSection: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getTeachersForSection.');
-            }
+            common_1.assertParamExists('getTeachersForSection', 'id', id);
             const localVarPath = `/sections/{id}/teachers`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2894,12 +2520,7 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -2909,13 +2530,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2927,12 +2546,11 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
          */
         getTermForSection: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getTermForSection.');
-            }
+            common_1.assertParamExists('getTermForSection', 'id', id);
             const localVarPath = `/sections/{id}/term`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -2942,19 +2560,12 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -2965,6 +2576,7 @@ exports.SectionsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.SectionsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.SectionsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns the course for a section
@@ -2973,11 +2585,8 @@ exports.SectionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getCourseForSection(id, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getCourseForSection(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCourseForSection(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the district for a section
@@ -2986,11 +2595,8 @@ exports.SectionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForSection(id, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getDistrictForSection(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForSection(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the school for a section
@@ -2999,11 +2605,8 @@ exports.SectionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSchoolForSection(id, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getSchoolForSection(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchoolForSection(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a specific section
@@ -3012,27 +2615,21 @@ exports.SectionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSection(id, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getSection(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSection(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of sections
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getSections(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getSections(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSections(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the students for a section
@@ -3044,11 +2641,8 @@ exports.SectionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getStudentsForSection(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getStudentsForSection(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStudentsForSection(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the primary teacher for a section
@@ -3057,11 +2651,8 @@ exports.SectionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getTeacherForSection(id, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getTeacherForSection(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeacherForSection(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the teachers for a section
@@ -3073,11 +2664,8 @@ exports.SectionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getTeachersForSection(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getTeachersForSection(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeachersForSection(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the term for a section
@@ -3086,11 +2674,8 @@ exports.SectionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getTermForSection(id, options) {
-            const localVarAxiosArgs = await exports.SectionsApiAxiosParamCreator(configuration).getTermForSection(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTermForSection(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -3099,6 +2684,7 @@ exports.SectionsApiFp = function (configuration) {
  * @export
  */
 exports.SectionsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.SectionsApiFp(configuration);
     return {
         /**
          * Returns the course for a section
@@ -3107,7 +2693,7 @@ exports.SectionsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getCourseForSection(id, options) {
-            return exports.SectionsApiFp(configuration).getCourseForSection(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getCourseForSection(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the district for a section
@@ -3116,7 +2702,7 @@ exports.SectionsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForSection(id, options) {
-            return exports.SectionsApiFp(configuration).getDistrictForSection(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForSection(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the school for a section
@@ -3125,7 +2711,7 @@ exports.SectionsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSchoolForSection(id, options) {
-            return exports.SectionsApiFp(configuration).getSchoolForSection(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchoolForSection(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a specific section
@@ -3134,19 +2720,19 @@ exports.SectionsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSection(id, options) {
-            return exports.SectionsApiFp(configuration).getSection(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getSection(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of sections
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getSections(limit, startingAfter, endingBefore, count, options) {
-            return exports.SectionsApiFp(configuration).getSections(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getSections(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the students for a section
@@ -3158,7 +2744,7 @@ exports.SectionsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getStudentsForSection(id, limit, startingAfter, endingBefore, options) {
-            return exports.SectionsApiFp(configuration).getStudentsForSection(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getStudentsForSection(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the primary teacher for a section
@@ -3167,7 +2753,7 @@ exports.SectionsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getTeacherForSection(id, options) {
-            return exports.SectionsApiFp(configuration).getTeacherForSection(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getTeacherForSection(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the teachers for a section
@@ -3179,7 +2765,7 @@ exports.SectionsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getTeachersForSection(id, limit, startingAfter, endingBefore, options) {
-            return exports.SectionsApiFp(configuration).getTeachersForSection(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getTeachersForSection(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the term for a section
@@ -3188,7 +2774,7 @@ exports.SectionsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getTermForSection(id, options) {
-            return exports.SectionsApiFp(configuration).getTermForSection(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getTermForSection(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3244,7 +2830,7 @@ class SectionsApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SectionsApi
@@ -3317,12 +2903,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
          */
         getContactsForStudent: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getContactsForStudent.');
-            }
+            common_1.assertParamExists('getContactsForStudent', 'id', id);
             const localVarPath = `/students/{id}/contacts`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3332,12 +2917,7 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -3347,13 +2927,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3365,12 +2943,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForStudent: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForStudent.');
-            }
+            common_1.assertParamExists('getDistrictForStudent', 'id', id);
             const localVarPath = `/students/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3380,19 +2957,12 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3404,12 +2974,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
          */
         getSchoolForStudent: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSchoolForStudent.');
-            }
+            common_1.assertParamExists('getSchoolForStudent', 'id', id);
             const localVarPath = `/students/{id}/school`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3419,19 +2988,12 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3446,12 +3008,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
          */
         getSchoolsForStudent: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSchoolsForStudent.');
-            }
+            common_1.assertParamExists('getSchoolsForStudent', 'id', id);
             const localVarPath = `/students/{id}/schools`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3461,12 +3022,7 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -3476,13 +3032,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3497,12 +3051,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
          */
         getSectionsForStudent: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSectionsForStudent.');
-            }
+            common_1.assertParamExists('getSectionsForStudent', 'id', id);
             const localVarPath = `/students/{id}/sections`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3512,12 +3065,7 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -3527,13 +3075,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3545,12 +3091,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
          */
         getStudent: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getStudent.');
-            }
+            common_1.assertParamExists('getStudent', 'id', id);
             const localVarPath = `/students/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3560,19 +3105,12 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3581,13 +3119,14 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getStudents: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/students`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3597,12 +3136,7 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -3615,13 +3149,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3636,12 +3168,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
          */
         getTeachersForStudent: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getTeachersForStudent.');
-            }
+            common_1.assertParamExists('getTeachersForStudent', 'id', id);
             const localVarPath = `/students/{id}/teachers`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3651,12 +3182,7 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -3666,13 +3192,11 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3683,6 +3207,7 @@ exports.StudentsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.StudentsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.StudentsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns the contacts for a student
@@ -3694,11 +3219,8 @@ exports.StudentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getContactsForStudent(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.StudentsApiAxiosParamCreator(configuration).getContactsForStudent(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getContactsForStudent(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the district for a student
@@ -3707,11 +3229,8 @@ exports.StudentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForStudent(id, options) {
-            const localVarAxiosArgs = await exports.StudentsApiAxiosParamCreator(configuration).getDistrictForStudent(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForStudent(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the primary school for a student
@@ -3720,11 +3239,8 @@ exports.StudentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSchoolForStudent(id, options) {
-            const localVarAxiosArgs = await exports.StudentsApiAxiosParamCreator(configuration).getSchoolForStudent(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchoolForStudent(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the schools for a student
@@ -3736,11 +3252,8 @@ exports.StudentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSchoolsForStudent(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.StudentsApiAxiosParamCreator(configuration).getSchoolsForStudent(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchoolsForStudent(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the sections for a student
@@ -3752,11 +3265,8 @@ exports.StudentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSectionsForStudent(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.StudentsApiAxiosParamCreator(configuration).getSectionsForStudent(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSectionsForStudent(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a specific student
@@ -3765,27 +3275,21 @@ exports.StudentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getStudent(id, options) {
-            const localVarAxiosArgs = await exports.StudentsApiAxiosParamCreator(configuration).getStudent(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStudent(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of students
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getStudents(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.StudentsApiAxiosParamCreator(configuration).getStudents(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStudents(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the teachers for a student
@@ -3797,11 +3301,8 @@ exports.StudentsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getTeachersForStudent(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.StudentsApiAxiosParamCreator(configuration).getTeachersForStudent(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeachersForStudent(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -3810,6 +3311,7 @@ exports.StudentsApiFp = function (configuration) {
  * @export
  */
 exports.StudentsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.StudentsApiFp(configuration);
     return {
         /**
          * Returns the contacts for a student
@@ -3821,7 +3323,7 @@ exports.StudentsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getContactsForStudent(id, limit, startingAfter, endingBefore, options) {
-            return exports.StudentsApiFp(configuration).getContactsForStudent(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getContactsForStudent(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the district for a student
@@ -3830,7 +3332,7 @@ exports.StudentsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForStudent(id, options) {
-            return exports.StudentsApiFp(configuration).getDistrictForStudent(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForStudent(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the primary school for a student
@@ -3839,7 +3341,7 @@ exports.StudentsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSchoolForStudent(id, options) {
-            return exports.StudentsApiFp(configuration).getSchoolForStudent(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchoolForStudent(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the schools for a student
@@ -3851,7 +3353,7 @@ exports.StudentsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSchoolsForStudent(id, limit, startingAfter, endingBefore, options) {
-            return exports.StudentsApiFp(configuration).getSchoolsForStudent(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchoolsForStudent(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the sections for a student
@@ -3863,7 +3365,7 @@ exports.StudentsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSectionsForStudent(id, limit, startingAfter, endingBefore, options) {
-            return exports.StudentsApiFp(configuration).getSectionsForStudent(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getSectionsForStudent(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a specific student
@@ -3872,19 +3374,19 @@ exports.StudentsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getStudent(id, options) {
-            return exports.StudentsApiFp(configuration).getStudent(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getStudent(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of students
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getStudents(limit, startingAfter, endingBefore, count, options) {
-            return exports.StudentsApiFp(configuration).getStudents(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getStudents(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the teachers for a student
@@ -3896,7 +3398,7 @@ exports.StudentsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getTeachersForStudent(id, limit, startingAfter, endingBefore, options) {
-            return exports.StudentsApiFp(configuration).getTeachersForStudent(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getTeachersForStudent(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3981,7 +3483,7 @@ class StudentsApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StudentsApi
@@ -4018,12 +3520,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForTeacher: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForTeacher.');
-            }
+            common_1.assertParamExists('getDistrictForTeacher', 'id', id);
             const localVarPath = `/teachers/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4033,19 +3534,12 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4057,12 +3551,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
          */
         getSchoolForTeacher: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSchoolForTeacher.');
-            }
+            common_1.assertParamExists('getSchoolForTeacher', 'id', id);
             const localVarPath = `/teachers/{id}/school`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4072,19 +3565,12 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4099,12 +3585,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
          */
         getSchoolsForTeacher: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSchoolsForTeacher.');
-            }
+            common_1.assertParamExists('getSchoolsForTeacher', 'id', id);
             const localVarPath = `/teachers/{id}/schools`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4114,12 +3599,7 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -4129,13 +3609,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4150,12 +3628,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
          */
         getSectionsForTeacher: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSectionsForTeacher.');
-            }
+            common_1.assertParamExists('getSectionsForTeacher', 'id', id);
             const localVarPath = `/teachers/{id}/sections`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4165,12 +3642,7 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -4180,13 +3652,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4201,12 +3671,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
          */
         getStudentsForTeacher: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getStudentsForTeacher.');
-            }
+            common_1.assertParamExists('getStudentsForTeacher', 'id', id);
             const localVarPath = `/teachers/{id}/students`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4216,12 +3685,7 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -4231,13 +3695,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4249,12 +3711,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
          */
         getTeacher: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getTeacher.');
-            }
+            common_1.assertParamExists('getTeacher', 'id', id);
             const localVarPath = `/teachers/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4264,19 +3725,12 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4285,13 +3739,14 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getTeachers: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/teachers`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4301,12 +3756,7 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -4319,13 +3769,11 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4336,6 +3784,7 @@ exports.TeachersApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.TeachersApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.TeachersApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns the district for a teacher
@@ -4344,11 +3793,8 @@ exports.TeachersApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForTeacher(id, options) {
-            const localVarAxiosArgs = await exports.TeachersApiAxiosParamCreator(configuration).getDistrictForTeacher(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForTeacher(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Retrieves school info for a teacher.
@@ -4357,11 +3803,8 @@ exports.TeachersApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSchoolForTeacher(id, options) {
-            const localVarAxiosArgs = await exports.TeachersApiAxiosParamCreator(configuration).getSchoolForTeacher(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchoolForTeacher(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the schools for a teacher
@@ -4373,11 +3816,8 @@ exports.TeachersApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSchoolsForTeacher(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.TeachersApiAxiosParamCreator(configuration).getSchoolsForTeacher(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSchoolsForTeacher(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the sections for a teacher
@@ -4389,11 +3829,8 @@ exports.TeachersApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSectionsForTeacher(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.TeachersApiAxiosParamCreator(configuration).getSectionsForTeacher(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSectionsForTeacher(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the students for a teacher
@@ -4405,11 +3842,8 @@ exports.TeachersApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getStudentsForTeacher(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.TeachersApiAxiosParamCreator(configuration).getStudentsForTeacher(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStudentsForTeacher(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a specific teacher
@@ -4418,27 +3852,21 @@ exports.TeachersApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getTeacher(id, options) {
-            const localVarAxiosArgs = await exports.TeachersApiAxiosParamCreator(configuration).getTeacher(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeacher(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of teachers
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getTeachers(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.TeachersApiAxiosParamCreator(configuration).getTeachers(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeachers(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -4447,6 +3875,7 @@ exports.TeachersApiFp = function (configuration) {
  * @export
  */
 exports.TeachersApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.TeachersApiFp(configuration);
     return {
         /**
          * Returns the district for a teacher
@@ -4455,7 +3884,7 @@ exports.TeachersApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForTeacher(id, options) {
-            return exports.TeachersApiFp(configuration).getDistrictForTeacher(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForTeacher(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves school info for a teacher.
@@ -4464,7 +3893,7 @@ exports.TeachersApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSchoolForTeacher(id, options) {
-            return exports.TeachersApiFp(configuration).getSchoolForTeacher(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchoolForTeacher(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the schools for a teacher
@@ -4476,7 +3905,7 @@ exports.TeachersApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSchoolsForTeacher(id, limit, startingAfter, endingBefore, options) {
-            return exports.TeachersApiFp(configuration).getSchoolsForTeacher(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getSchoolsForTeacher(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the sections for a teacher
@@ -4488,7 +3917,7 @@ exports.TeachersApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSectionsForTeacher(id, limit, startingAfter, endingBefore, options) {
-            return exports.TeachersApiFp(configuration).getSectionsForTeacher(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getSectionsForTeacher(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the students for a teacher
@@ -4500,7 +3929,7 @@ exports.TeachersApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getStudentsForTeacher(id, limit, startingAfter, endingBefore, options) {
-            return exports.TeachersApiFp(configuration).getStudentsForTeacher(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getStudentsForTeacher(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a specific teacher
@@ -4509,19 +3938,19 @@ exports.TeachersApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getTeacher(id, options) {
-            return exports.TeachersApiFp(configuration).getTeacher(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getTeacher(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of teachers
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getTeachers(limit, startingAfter, endingBefore, count, options) {
-            return exports.TeachersApiFp(configuration).getTeachers(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getTeachers(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4606,7 +4035,7 @@ class TeachersApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeachersApi
@@ -4630,12 +4059,11 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
          */
         getDistrictForTerm: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getDistrictForTerm.');
-            }
+            common_1.assertParamExists('getDistrictForTerm', 'id', id);
             const localVarPath = `/terms/{id}/district`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4645,19 +4073,12 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4672,12 +4093,11 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
          */
         getSectionsForTerm: async (id, limit, startingAfter, endingBefore, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getSectionsForTerm.');
-            }
+            common_1.assertParamExists('getSectionsForTerm', 'id', id);
             const localVarPath = `/terms/{id}/sections`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4687,12 +4107,7 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -4702,13 +4117,11 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
             if (endingBefore !== undefined) {
                 localVarQueryParameter['ending_before'] = endingBefore;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4720,12 +4133,11 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
          */
         getTerm: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getTerm.');
-            }
+            common_1.assertParamExists('getTerm', 'id', id);
             const localVarPath = `/terms/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4735,19 +4147,12 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4756,13 +4161,14 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getTerms: async (limit, startingAfter, endingBefore, count, options = {}) => {
             const localVarPath = `/terms`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4772,12 +4178,7 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication oauth required
             // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth", [])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
+            await common_1.setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration);
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
@@ -4790,13 +4191,11 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
             }
-            localVarUrlObj.query = { ...localVarUrlObj.query, ...localVarQueryParameter, ...options.query };
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4807,6 +4206,7 @@ exports.TermsApiAxiosParamCreator = function (configuration) {
  * @export
  */
 exports.TermsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.TermsApiAxiosParamCreator(configuration);
     return {
         /**
          * Returns the district for a term
@@ -4815,11 +4215,8 @@ exports.TermsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getDistrictForTerm(id, options) {
-            const localVarAxiosArgs = await exports.TermsApiAxiosParamCreator(configuration).getDistrictForTerm(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDistrictForTerm(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns the sections for a term
@@ -4831,11 +4228,8 @@ exports.TermsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSectionsForTerm(id, limit, startingAfter, endingBefore, options) {
-            const localVarAxiosArgs = await exports.TermsApiAxiosParamCreator(configuration).getSectionsForTerm(id, limit, startingAfter, endingBefore, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSectionsForTerm(id, limit, startingAfter, endingBefore, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a specific term
@@ -4844,27 +4238,21 @@ exports.TermsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getTerm(id, options) {
-            const localVarAxiosArgs = await exports.TermsApiAxiosParamCreator(configuration).getTerm(id, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTerm(id, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
         /**
          * Returns a list of terms
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getTerms(limit, startingAfter, endingBefore, count, options) {
-            const localVarAxiosArgs = await exports.TermsApiAxiosParamCreator(configuration).getTerms(limit, startingAfter, endingBefore, count, options);
-            return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
-                const axiosRequestArgs = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTerms(limit, startingAfter, endingBefore, count, options);
+            return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
         },
     };
 };
@@ -4873,6 +4261,7 @@ exports.TermsApiFp = function (configuration) {
  * @export
  */
 exports.TermsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.TermsApiFp(configuration);
     return {
         /**
          * Returns the district for a term
@@ -4881,7 +4270,7 @@ exports.TermsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getDistrictForTerm(id, options) {
-            return exports.TermsApiFp(configuration).getDistrictForTerm(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getDistrictForTerm(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the sections for a term
@@ -4893,7 +4282,7 @@ exports.TermsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getSectionsForTerm(id, limit, startingAfter, endingBefore, options) {
-            return exports.TermsApiFp(configuration).getSectionsForTerm(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
+            return localVarFp.getSectionsForTerm(id, limit, startingAfter, endingBefore, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a specific term
@@ -4902,19 +4291,19 @@ exports.TermsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         getTerm(id, options) {
-            return exports.TermsApiFp(configuration).getTerm(id, options).then((request) => request(axios, basePath));
+            return localVarFp.getTerm(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of terms
          * @param {number} [limit]
          * @param {string} [startingAfter]
          * @param {string} [endingBefore]
-         * @param {'' | 'true'} [count]
+         * @param {'' | 'true' | 'false' | 'undefined'} [count]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getTerms(limit, startingAfter, endingBefore, count, options) {
-            return exports.TermsApiFp(configuration).getTerms(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
+            return localVarFp.getTerms(limit, startingAfter, endingBefore, count, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4963,7 +4352,7 @@ class TermsApi extends base_1.BaseAPI {
      * @param {number} [limit]
      * @param {string} [startingAfter]
      * @param {string} [endingBefore]
-     * @param {'' | 'true'} [count]
+     * @param {'' | 'true' | 'false' | 'undefined'} [count]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TermsApi
